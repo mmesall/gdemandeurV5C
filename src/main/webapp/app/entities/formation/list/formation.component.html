@@ -1,12 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="FormationHeading">
-    <span>Formations</span>
+  <h2 id="page-heading" data-cy="FormationHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Formations professionnelles et techniques</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
         id="jh-create-entity"
@@ -15,7 +15,7 @@
         [routerLink]="['/formation/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Formation </span>
+        <span> Creer une nouvelle Formation </span>
       </button>
     </div>
   </h2>
@@ -25,39 +25,39 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="formations?.length === 0">
-    <span>No formations found</span>
+    <span>Aucune formation trouvée</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="formations && formations.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nomFormation"><span>Nom Formation</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="typeFormation"><span>Type Formation</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="duree"><span>Duree</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="admission"><span>Admission</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="diplomeRequis"><span>Diplome Requis</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="autreDiplome"><span>Autre Diplome</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="secteur"><span>Secteur</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="autreSecteur"><span>Autre Secteur</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="ficheFormation"><span>Fiche Formation</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="programmes"><span>Programmes</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="autreDiplome"><span>Autre Diplome</span> <fa-icon icon="sort"></fa-icon></th> -->
+          <!-- <th scope="col" jhiSortBy="secteur"><span>Secteur</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autreSecteur"><span>Autre Secteur</span> <fa-icon icon="sort"></fa-icon></th> -->
+          <!-- <th scope="col" jhiSortBy="ficheFormation"><span>Fiche Formation</span> <fa-icon icon="sort"></fa-icon></th> -->
+          <!-- <th scope="col" jhiSortBy="programmes"><span>Programmes</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nomConcours"><span>Nom Concours</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dateOuverture"><span>Date Ouverture</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dateCloture"><span>Date Cloture</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dateConcours"><span>Date Concours</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="libellePC"><span>Libelle PC</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="montantPriseEnCharge"><span>Montant Prise En Charge</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="detailPC"><span>Detail PC</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="nomDiplome"><span>Nom Diplome</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="detailPC"><span>Detail PC</span> <fa-icon icon="sort"></fa-icon></th> -->
+          <!-- <th scope="col" jhiSortBy="nomDiplome"><span>Nom Diplome</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nomDebouche"><span>Nom Debouche</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col"></th>
+          <th scope="col"></th> -->
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let formation of formations; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a [routerLink]="['/formation', formation.id, 'view']">{{ formation.id }}</a>
           </td>
           <td>{{ formation.nomFormation }}</td>
@@ -65,16 +65,16 @@
           <td>{{ formation.duree }}</td>
           <td>{{ formation.admission }}</td>
           <td>{{ formation.diplomeRequis }}</td>
-          <td>{{ formation.autreDiplome }}</td>
+          <!-- <td>{{ formation.autreDiplome }}</td>
           <td>{{ formation.secteur }}</td>
-          <td>{{ formation.autreSecteur }}</td>
-          <td>
+          <td>{{ formation.autreSecteur }}</td> -->
+          <!-- <td>
             <a *ngIf="formation.ficheFormation" (click)="openFile(formation.ficheFormation, formation.ficheFormationContentType)">open</a>
             <span *ngIf="formation.ficheFormation"
               >{{ formation.ficheFormationContentType }}, {{ byteSize(formation.ficheFormation) }}</span
             >
-          </td>
-          <td>{{ formation.programmes }}</td>
+          </td> -->
+          <!-- <td>{{ formation.programmes }}</td>
           <td>{{ formation.nomConcours }}</td>
           <td>{{ formation.dateOuverture | formatMediumDate }}</td>
           <td>{{ formation.dateCloture | formatMediumDate }}</td>
@@ -83,7 +83,7 @@
           <td>{{ formation.montantPriseEnCharge }}</td>
           <td>{{ formation.detailPC }}</td>
           <td>{{ formation.nomDiplome }}</td>
-          <td>{{ formation.nomDebouche }}</td>
+          <td>{{ formation.nomDebouche }}</td> -->
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -93,22 +93,31 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <a *ngIf="formation.ficheFormation" (click)="openFile(formation.ficheFormation, formation.ficheFormationContentType)"
+                  >Voir</a
+                >
               </button>
 
               <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/formation', formation.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(formation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(formation)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
