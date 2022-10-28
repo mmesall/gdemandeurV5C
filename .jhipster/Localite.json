@@ -1,0 +1,196 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114835",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "localite",
+  "fields": [
+    {
+      "fieldName": "region",
+      "fieldType": "NomRegion",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "DAKAR,DIOURBEL,FATICK,KAFFRINE,KAOLACK,KEDOUGOU,KOLDA,LOUGA,MATAM,SAINT_LOUIS,SEDHIOU,TAMBACOUNDA,THIES,ZIGINCHOR,AUTRE"
+    },
+    {
+      "fieldName": "autreRegion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "departementDakar",
+      "fieldType": "DAKAR",
+      "fieldValues": "DAKAR,GUEDIAWAYE,PIKINE,RUFISQUE,AUTRE"
+    },
+    {
+      "fieldName": "departementDiourbel",
+      "fieldType": "DIOURBEL",
+      "fieldValues": "BAMBAEY,DIOURBEL,MBACKE,AUTRE"
+    },
+    {
+      "fieldName": "departementFatick",
+      "fieldType": "FATICK",
+      "fieldValues": "FATICK,FOUNDIOUGNE,GOSSAS,AUTRE"
+    },
+    {
+      "fieldName": "departementKaffrine",
+      "fieldType": "KAFFRINE",
+      "fieldValues": "BIRKILANE,KAFFRINE,KOUNGHEUR,MALEM_HODAR,AUTRE"
+    },
+    {
+      "fieldName": "departementKaolack",
+      "fieldType": "KAOLACK",
+      "fieldValues": "GUINGUINEO,KAOLOACK,NIORO,AUTRE"
+    },
+    {
+      "fieldName": "departementKedougou",
+      "fieldType": "KEDOUGOU",
+      "fieldValues": "KEDOUGOU,SALAMATA,SARAYA,AUTRE"
+    },
+    {
+      "fieldName": "departementKolda",
+      "fieldType": "KOLDA",
+      "fieldValues": "KOLDA,MEDINA_YORO_FOULAH,VELINGARA,AUTRE"
+    },
+    {
+      "fieldName": "departementLouga",
+      "fieldType": "LOUGA",
+      "fieldValues": "KEBEMERE,LINGUERE,LOUGA,AUTRE"
+    },
+    {
+      "fieldName": "departementMatam",
+      "fieldType": "MATAM",
+      "fieldValues": "KANELKANEL,MATAM,RANEROU_FERLO,AUTRE"
+    },
+    {
+      "fieldName": "departementSaint",
+      "fieldType": "SAINTLOUIS",
+      "fieldValues": "DAGANA,PODOR,SAINT_LOUIS,AUTRE"
+    },
+    {
+      "fieldName": "departementSedhiou",
+      "fieldType": "SEDHIOU",
+      "fieldValues": "BOUNKILING,GOUDOMP,SEDHIOU,AUTRE"
+    },
+    {
+      "fieldName": "departementTambacounda",
+      "fieldType": "TAMBACOUNDA",
+      "fieldValues": "BAKEL,GOUDIRY,KOUMPENTOUM,TAMBACOUNDA,AUTRE"
+    },
+    {
+      "fieldName": "departementThis",
+      "fieldType": "THIES",
+      "fieldValues": "MBOUR,THIES,TIVAOUANE,AUTRE"
+    },
+    {
+      "fieldName": "departementZiguinchor",
+      "fieldType": "ZIGUINCHOR",
+      "fieldValues": "BIGNONA,OUSSOUYE,ZICHUINCHOR,AUTRE"
+    },
+    {
+      "fieldName": "autredepartementDakar",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementDiourbel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementFatick",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementKaffrine",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementKaolack",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementKedougou",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementKolda",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementLouga",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementMatam",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementSaint",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementSedhiou",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementTambacounda",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementThis",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autredepartementZiguinchor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "commune",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomQuartier",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Localite",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "adresse",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "localite",
+      "relationshipName": "etablissement",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "adresse",
+      "otherEntityName": "eleve",
+      "otherEntityRelationshipName": "localite",
+      "relationshipName": "eleve",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "adresse",
+      "otherEntityName": "etudiant",
+      "otherEntityRelationshipName": "localite",
+      "relationshipName": "etudiant",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "adresse",
+      "otherEntityName": "professionnel",
+      "otherEntityRelationshipName": "localite",
+      "relationshipName": "professionnel",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "agent",
+      "otherEntityRelationshipName": "localite",
+      "relationshipName": "agent",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

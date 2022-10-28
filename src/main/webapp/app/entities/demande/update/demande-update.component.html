@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-demande-heading" data-cy="DemandeCreateUpdateHeading">Create or edit a Demande</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_libelle">Libelle</label>
+          <input type="text" class="form-control" name="libelle" id="field_libelle" data-cy="libelle" formControlName="libelle" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_niveauEtude">Niveau Etude</label>
+          <input
+            type="text"
+            class="form-control"
+            name="niveauEtude"
+            id="field_niveauEtude"
+            data-cy="niveauEtude"
+            formControlName="niveauEtude"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_etatDemande">Etat Demande</label>
+          <select class="form-control" name="etatDemande" formControlName="etatDemande" id="field_etatDemande" data-cy="etatDemande">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let etatDemande of etatDemandeValues" [value]="etatDemande">etatDemande</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_formation">Formation</label>
+          <select class="form-control" id="field_formation" data-cy="formation" name="formation" formControlName="formation">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="formationOption.id === editForm.get('formation')!.value?.id ? editForm.get('formation')!.value : formationOption"
+              *ngFor="let formationOption of formationsCollection; trackBy: trackFormationById"
+            >
+              {{ formationOption.nomFormation }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dossier">Dossier</label>
+          <select class="form-control" id="field_dossier" data-cy="dossier" name="dossier" formControlName="dossier">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="dossierOption.id === editForm.get('dossier')!.value?.id ? editForm.get('dossier')!.value : dossierOption"
+              *ngFor="let dossierOption of dossiersSharedCollection; trackBy: trackDossierById"
+            >
+              {{ dossierOption.numDossier }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="formation">
+      <h2 data-cy="formationDetailsHeading"><span>Formation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ formation.id }}</span>
+        </dd>
+        <dt><span>Nom Formation</span></dt>
+        <dd>
+          <span>{{ formation.nomFormation }}</span>
+        </dd>
+        <dt><span>Type Formation</span></dt>
+        <dd>
+          <span>{{ formation.typeFormation }}</span>
+        </dd>
+        <dt><span>Duree</span></dt>
+        <dd>
+          <span>{{ formation.duree }}</span>
+        </dd>
+        <dt><span>Admission</span></dt>
+        <dd>
+          <span>{{ formation.admission }}</span>
+        </dd>
+        <dt><span>Diplome Requis</span></dt>
+        <dd>
+          <span>{{ formation.diplomeRequis }}</span>
+        </dd>
+        <dt><span>Autre Diplome</span></dt>
+        <dd>
+          <span>{{ formation.autreDiplome }}</span>
+        </dd>
+        <dt><span>Secteur</span></dt>
+        <dd>
+          <span>{{ formation.secteur }}</span>
+        </dd>
+        <dt><span>Autre Secteur</span></dt>
+        <dd>
+          <span>{{ formation.autreSecteur }}</span>
+        </dd>
+        <dt><span>Fiche Formation</span></dt>
+        <dd>
+          <div *ngIf="formation.ficheFormation">
+            <a (click)="openFile(formation.ficheFormation, formation.ficheFormationContentType)">open</a>
+            {{ formation.ficheFormationContentType }}, {{ byteSize(formation.ficheFormation) }}
+          </div>
+        </dd>
+        <dt><span>Programmes</span></dt>
+        <dd>
+          <span>{{ formation.programmes }}</span>
+        </dd>
+        <dt><span>Nom Concours</span></dt>
+        <dd>
+          <span>{{ formation.nomConcours }}</span>
+        </dd>
+        <dt><span>Date Ouverture</span></dt>
+        <dd>
+          <span>{{ formation.dateOuverture | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Cloture</span></dt>
+        <dd>
+          <span>{{ formation.dateCloture | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Concours</span></dt>
+        <dd>
+          <span>{{ formation.dateConcours | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Libelle PC</span></dt>
+        <dd>
+          <span>{{ formation.libellePC }}</span>
+        </dd>
+        <dt><span>Montant Prise En Charge</span></dt>
+        <dd>
+          <span>{{ formation.montantPriseEnCharge }}</span>
+        </dd>
+        <dt><span>Detail PC</span></dt>
+        <dd>
+          <span>{{ formation.detailPC }}</span>
+        </dd>
+        <dt><span>Nom Diplome</span></dt>
+        <dd>
+          <span>{{ formation.nomDiplome }}</span>
+        </dd>
+        <dt><span>Nom Debouche</span></dt>
+        <dd>
+          <span>{{ formation.nomDebouche }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/formation', formation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

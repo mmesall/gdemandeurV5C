@@ -1,0 +1,88 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demandeur">
+      <h2 data-cy="demandeurDetailsHeading"><span>Demandeur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demandeur.id }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ demandeur.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ demandeur.prenom }}</span>
+        </dd>
+        <dt><span>Date Naiss</span></dt>
+        <dd>
+          <span>{{ demandeur.dateNaiss | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Lieu Naiss</span></dt>
+        <dd>
+          <span>{{ demandeur.lieuNaiss }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ demandeur.sexe }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ demandeur.telephone }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ demandeur.email }}</span>
+        </dd>
+        <dt><span>Profil</span></dt>
+        <dd>
+          <span>{{ demandeur.profil }}</span>
+        </dd>
+        <dt><span>Dossier</span></dt>
+        <dd>
+          <div *ngIf="demandeur.dossier">
+            <a [routerLink]="['/dossier', demandeur.dossier?.id, 'view']">{{ demandeur.dossier?.numDossier }}</a>
+          </div>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ demandeur.user?.login }}</span>
+        </dd>
+        <dt><span>Eleve</span></dt>
+        <dd>
+          <div *ngIf="demandeur.eleve">
+            <a [routerLink]="['/eleve', demandeur.eleve?.id, 'view']">{{ demandeur.eleve?.cni }}</a>
+          </div>
+        </dd>
+        <dt><span>Etudiant</span></dt>
+        <dd>
+          <div *ngIf="demandeur.etudiant">
+            <a [routerLink]="['/etudiant', demandeur.etudiant?.id, 'view']">{{ demandeur.etudiant?.cni }}</a>
+          </div>
+        </dd>
+        <dt><span>Professionnel</span></dt>
+        <dd>
+          <div *ngIf="demandeur.professionnel">
+            <a [routerLink]="['/professionnel', demandeur.professionnel?.id, 'view']">{{ demandeur.professionnel?.cni }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demandeur', demandeur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

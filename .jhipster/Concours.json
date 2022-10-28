@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114848",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "concours",
+  "fields": [
+    {
+      "fieldName": "nomConcours",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOuverture",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateCloture",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateConcours",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Concours",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomFormation",
+      "otherEntityName": "formation",
+      "otherEntityRelationshipName": "concours",
+      "relationshipName": "formation",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

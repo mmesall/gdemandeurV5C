@@ -1,0 +1,100 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-filiere-heading" data-cy="FiliereCreateUpdateHeading">Create or edit a Filiere</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomFiliere">Nom Filiere</label>
+          <select class="form-control" name="nomFiliere" formControlName="nomFiliere" id="field_nomFiliere" data-cy="nomFiliere">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let nomFiliere of nomFiliereValues" [value]="nomFiliere">nomFiliere</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_niveauEtude">Niveau Etude</label>
+          <select class="form-control" name="niveauEtude" formControlName="niveauEtude" id="field_niveauEtude" data-cy="niveauEtude">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let niveauEtude of niveauEtudeValues" [value]="niveauEtude">niveauEtude</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_programme">Programme</label>
+          <textarea class="form-control" name="programme" id="field_programme" data-cy="programme" formControlName="programme"></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autreNiveauEtude">Autre Niveau Etude</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreNiveauEtude"
+            id="field_autreNiveauEtude"
+            data-cy="autreNiveauEtude"
+            formControlName="autreNiveauEtude"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autreFiliere">Autre Filiere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreFiliere"
+            id="field_autreFiliere"
+            data-cy="autreFiliere"
+            formControlName="autreFiliere"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_etablissement">Etablissement</label>
+          <select
+            class="form-control"
+            id="field_etablissement"
+            data-cy="etablissement"
+            name="etablissement"
+            formControlName="etablissement"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                etablissementOption.id === editForm.get('etablissement')!.value?.id
+                  ? editForm.get('etablissement')!.value
+                  : etablissementOption
+              "
+              *ngFor="let etablissementOption of etablissementsSharedCollection; trackBy: trackEtablissementById"
+            >
+              {{ etablissementOption.nomEtablissement }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

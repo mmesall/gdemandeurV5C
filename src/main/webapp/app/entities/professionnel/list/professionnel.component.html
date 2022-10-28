@@ -1,0 +1,128 @@
+<div>
+  <h2 id="page-heading" data-cy="ProfessionnelHeading">
+    <span>Professionnels</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-professionnel"
+        [routerLink]="['/professionnel/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Professionnel </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="professionnels?.length === 0">
+    <span>No professionnels found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="professionnels && professionnels.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nom"><span>Nom</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="prenom"><span>Prenom</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateNaiss"><span>Date Naiss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="sexe"><span>Sexe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="telephone"><span>Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="adressePhysique"><span>Adresse Physique</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cni"><span>Cni</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="user.login"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dossier.numDossier"><span>Dossier</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="localite.region"><span>Localite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let professionnel of professionnels; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/professionnel', professionnel.id, 'view']">{{ professionnel.id }}</a>
+          </td>
+          <td>{{ professionnel.nom }}</td>
+          <td>{{ professionnel.prenom }}</td>
+          <td>{{ professionnel.dateNaiss | formatMediumDate }}</td>
+          <td>{{ professionnel.lieuNaiss }}</td>
+          <td>{{ professionnel.sexe }}</td>
+          <td>{{ professionnel.telephone }}</td>
+          <td>{{ professionnel.adressePhysique }}</td>
+          <td>{{ professionnel.email }}</td>
+          <td>{{ professionnel.cni }}</td>
+          <td>
+            {{ professionnel.user?.login }}
+          </td>
+          <td>
+            <div *ngIf="professionnel.dossier">
+              <a [routerLink]="['/dossier', professionnel.dossier?.id, 'view']">{{ professionnel.dossier?.numDossier }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="professionnel.localite">
+              <a [routerLink]="['/localite', professionnel.localite?.id, 'view']">{{ professionnel.localite?.region }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/professionnel', professionnel.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/professionnel', professionnel.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(professionnel)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="professionnels && professionnels.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="membre">
+      <h2 data-cy="membreDetailsHeading"><span>Membre</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ membre.id }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ membre.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ membre.prenom }}</span>
+        </dd>
+        <dt><span>Date Naiss</span></dt>
+        <dd>
+          <span>{{ membre.dateNaiss | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Lieu Naiss</span></dt>
+        <dd>
+          <span>{{ membre.lieuNaiss }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ membre.sexe }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ membre.telephone }}</span>
+        </dd>
+        <dt><span>Adresse Physique</span></dt>
+        <dd>
+          <span>{{ membre.adressePhysique }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ membre.email }}</span>
+        </dd>
+        <dt><span>Cni</span></dt>
+        <dd>
+          <span>{{ membre.cni }}</span>
+        </dd>
+        <dt><span>Matricule</span></dt>
+        <dd>
+          <span>{{ membre.matricule }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ membre.user?.login }}</span>
+        </dd>
+        <dt><span>Agent</span></dt>
+        <dd>
+          <div *ngIf="membre.agent">
+            <a [routerLink]="['/agent', membre.agent?.id, 'view']">{{ membre.agent?.matricule }}</a>
+          </div>
+        </dd>
+        <dt><span>Commission</span></dt>
+        <dd>
+          <div *ngIf="membre.commission">
+            <a [routerLink]="['/commission', membre.commission?.id, 'view']">{{ membre.commission?.nomCommission }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/membre', membre.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

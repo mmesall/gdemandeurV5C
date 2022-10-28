@@ -1,0 +1,439 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-localite-heading" data-cy="LocaliteCreateUpdateHeading">Create or edit a Localite</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_region">Region</label>
+          <select class="form-control" name="region" formControlName="region" id="field_region" data-cy="region">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let nomRegion of nomRegionValues" [value]="nomRegion">nomRegion</option>
+          </select>
+          <div *ngIf="editForm.get('region')!.invalid && (editForm.get('region')!.dirty || editForm.get('region')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('region')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autreRegion">Autre Region</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreRegion"
+            id="field_autreRegion"
+            data-cy="autreRegion"
+            formControlName="autreRegion"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementDakar">Departement Dakar</label>
+          <select
+            class="form-control"
+            name="departementDakar"
+            formControlName="departementDakar"
+            id="field_departementDakar"
+            data-cy="departementDakar"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let dAKAR of dAKARValues" [value]="dAKAR">dAKAR</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementDiourbel">Departement Diourbel</label>
+          <select
+            class="form-control"
+            name="departementDiourbel"
+            formControlName="departementDiourbel"
+            id="field_departementDiourbel"
+            data-cy="departementDiourbel"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let dIOURBEL of dIOURBELValues" [value]="dIOURBEL">dIOURBEL</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementFatick">Departement Fatick</label>
+          <select
+            class="form-control"
+            name="departementFatick"
+            formControlName="departementFatick"
+            id="field_departementFatick"
+            data-cy="departementFatick"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let fATICK of fATICKValues" [value]="fATICK">fATICK</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementKaffrine">Departement Kaffrine</label>
+          <select
+            class="form-control"
+            name="departementKaffrine"
+            formControlName="departementKaffrine"
+            id="field_departementKaffrine"
+            data-cy="departementKaffrine"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let kAFFRINE of kAFFRINEValues" [value]="kAFFRINE">kAFFRINE</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementKaolack">Departement Kaolack</label>
+          <select
+            class="form-control"
+            name="departementKaolack"
+            formControlName="departementKaolack"
+            id="field_departementKaolack"
+            data-cy="departementKaolack"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let kAOLACK of kAOLACKValues" [value]="kAOLACK">kAOLACK</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementKedougou">Departement Kedougou</label>
+          <select
+            class="form-control"
+            name="departementKedougou"
+            formControlName="departementKedougou"
+            id="field_departementKedougou"
+            data-cy="departementKedougou"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let kEDOUGOU of kEDOUGOUValues" [value]="kEDOUGOU">kEDOUGOU</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementKolda">Departement Kolda</label>
+          <select
+            class="form-control"
+            name="departementKolda"
+            formControlName="departementKolda"
+            id="field_departementKolda"
+            data-cy="departementKolda"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let kOLDA of kOLDAValues" [value]="kOLDA">kOLDA</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementLouga">Departement Louga</label>
+          <select
+            class="form-control"
+            name="departementLouga"
+            formControlName="departementLouga"
+            id="field_departementLouga"
+            data-cy="departementLouga"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let lOUGA of lOUGAValues" [value]="lOUGA">lOUGA</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementMatam">Departement Matam</label>
+          <select
+            class="form-control"
+            name="departementMatam"
+            formControlName="departementMatam"
+            id="field_departementMatam"
+            data-cy="departementMatam"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let mATAM of mATAMValues" [value]="mATAM">mATAM</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementSaint">Departement Saint</label>
+          <select
+            class="form-control"
+            name="departementSaint"
+            formControlName="departementSaint"
+            id="field_departementSaint"
+            data-cy="departementSaint"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let sAINTLOUIS of sAINTLOUISValues" [value]="sAINTLOUIS">sAINTLOUIS</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementSedhiou">Departement Sedhiou</label>
+          <select
+            class="form-control"
+            name="departementSedhiou"
+            formControlName="departementSedhiou"
+            id="field_departementSedhiou"
+            data-cy="departementSedhiou"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let sEDHIOU of sEDHIOUValues" [value]="sEDHIOU">sEDHIOU</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementTambacounda">Departement Tambacounda</label>
+          <select
+            class="form-control"
+            name="departementTambacounda"
+            formControlName="departementTambacounda"
+            id="field_departementTambacounda"
+            data-cy="departementTambacounda"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let tAMBACOUNDA of tAMBACOUNDAValues" [value]="tAMBACOUNDA">tAMBACOUNDA</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementThis">Departement This</label>
+          <select
+            class="form-control"
+            name="departementThis"
+            formControlName="departementThis"
+            id="field_departementThis"
+            data-cy="departementThis"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let tHIES of tHIESValues" [value]="tHIES">tHIES</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_departementZiguinchor">Departement Ziguinchor</label>
+          <select
+            class="form-control"
+            name="departementZiguinchor"
+            formControlName="departementZiguinchor"
+            id="field_departementZiguinchor"
+            data-cy="departementZiguinchor"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let zIGUINCHOR of zIGUINCHORValues" [value]="zIGUINCHOR">zIGUINCHOR</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementDakar">Autredepartement Dakar</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementDakar"
+            id="field_autredepartementDakar"
+            data-cy="autredepartementDakar"
+            formControlName="autredepartementDakar"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementDiourbel">Autredepartement Diourbel</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementDiourbel"
+            id="field_autredepartementDiourbel"
+            data-cy="autredepartementDiourbel"
+            formControlName="autredepartementDiourbel"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementFatick">Autredepartement Fatick</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementFatick"
+            id="field_autredepartementFatick"
+            data-cy="autredepartementFatick"
+            formControlName="autredepartementFatick"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementKaffrine">Autredepartement Kaffrine</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementKaffrine"
+            id="field_autredepartementKaffrine"
+            data-cy="autredepartementKaffrine"
+            formControlName="autredepartementKaffrine"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementKaolack">Autredepartement Kaolack</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementKaolack"
+            id="field_autredepartementKaolack"
+            data-cy="autredepartementKaolack"
+            formControlName="autredepartementKaolack"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementKedougou">Autredepartement Kedougou</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementKedougou"
+            id="field_autredepartementKedougou"
+            data-cy="autredepartementKedougou"
+            formControlName="autredepartementKedougou"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementKolda">Autredepartement Kolda</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementKolda"
+            id="field_autredepartementKolda"
+            data-cy="autredepartementKolda"
+            formControlName="autredepartementKolda"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementLouga">Autredepartement Louga</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementLouga"
+            id="field_autredepartementLouga"
+            data-cy="autredepartementLouga"
+            formControlName="autredepartementLouga"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementMatam">Autredepartement Matam</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementMatam"
+            id="field_autredepartementMatam"
+            data-cy="autredepartementMatam"
+            formControlName="autredepartementMatam"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementSaint">Autredepartement Saint</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementSaint"
+            id="field_autredepartementSaint"
+            data-cy="autredepartementSaint"
+            formControlName="autredepartementSaint"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementSedhiou">Autredepartement Sedhiou</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementSedhiou"
+            id="field_autredepartementSedhiou"
+            data-cy="autredepartementSedhiou"
+            formControlName="autredepartementSedhiou"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementTambacounda">Autredepartement Tambacounda</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementTambacounda"
+            id="field_autredepartementTambacounda"
+            data-cy="autredepartementTambacounda"
+            formControlName="autredepartementTambacounda"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementThis">Autredepartement This</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementThis"
+            id="field_autredepartementThis"
+            data-cy="autredepartementThis"
+            formControlName="autredepartementThis"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autredepartementZiguinchor">Autredepartement Ziguinchor</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autredepartementZiguinchor"
+            id="field_autredepartementZiguinchor"
+            data-cy="autredepartementZiguinchor"
+            formControlName="autredepartementZiguinchor"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_commune">Commune</label>
+          <input type="text" class="form-control" name="commune" id="field_commune" data-cy="commune" formControlName="commune" />
+          <div *ngIf="editForm.get('commune')!.invalid && (editForm.get('commune')!.dirty || editForm.get('commune')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('commune')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomQuartier">Nom Quartier</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomQuartier"
+            id="field_nomQuartier"
+            data-cy="nomQuartier"
+            formControlName="nomQuartier"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

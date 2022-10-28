@@ -1,0 +1,122 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114837",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "dossier",
+  "fields": [
+    {
+      "fieldName": "numDossier",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeDemandeur",
+      "fieldType": "TypeDemandeur",
+      "fieldValues": "ELEVE,ETUDIANT,PROFESSIONNEL"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "region",
+      "fieldType": "NomRegion",
+      "fieldValues": "DAKAR,DIOURBEL,FATICK,KAFFRINE,KAOLACK,KEDOUGOU,KOLDA,LOUGA,MATAM,SAINT_LOUIS,SEDHIOU,TAMBACOUNDA,THIES,ZIGINCHOR,AUTRE"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "cv",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "lettreMotivation",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "diplomeRequis",
+      "fieldType": "DiplomeRequis",
+      "fieldValues": "ATTESTATION,CAP,BT,DUR,DNBA,BEP,BTS,BFEM,BAC,LICENCE,MASTER,Autres"
+    },
+    {
+      "fieldName": "niveauEtude",
+      "fieldType": "NiveauEtude",
+      "fieldValues": "Cinquieme,Quatrieme,Troisieme,BFEM,Equivalent_BFEM,Seconde,Premiere,Terminal,BAC,Equivalent_BAC,Licenece1,Licence2,CAP1,CAP2,CAP3,BEP1,BEP2,BT1,BT2,BT3,BTS1,BTS2,Licence3,Master,Doctorat,Autres"
+    },
+    {
+      "fieldName": "profession",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Dossier",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "dossier",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "demande",
+      "otherEntityRelationshipName": "dossier",
+      "relationshipName": "demande",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "eleve",
+      "otherEntityRelationshipName": "dossier",
+      "ownerSide": false,
+      "relationshipName": "eleve",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "etudiant",
+      "otherEntityRelationshipName": "dossier",
+      "ownerSide": false,
+      "relationshipName": "etudiant",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "professionnel",
+      "otherEntityRelationshipName": "dossier",
+      "ownerSide": false,
+      "relationshipName": "professionnel",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "demandeur",
+      "otherEntityRelationshipName": "dossier",
+      "ownerSide": false,
+      "relationshipName": "demandeur",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

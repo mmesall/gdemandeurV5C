@@ -1,0 +1,33 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114838",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "piece_jointe",
+  "fields": [
+    {
+      "fieldName": "typePiece",
+      "fieldType": "TypePiece",
+      "fieldValues": "CV,DIPLOME,CNI,LM,PASSPORT"
+    },
+    {
+      "fieldName": "nomPiece",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PieceJointe",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "libelle",
+      "otherEntityName": "demande",
+      "otherEntityRelationshipName": "pieceJointe",
+      "relationshipName": "demande",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

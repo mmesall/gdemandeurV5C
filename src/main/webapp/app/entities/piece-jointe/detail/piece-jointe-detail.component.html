@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pieceJointe">
+      <h2 data-cy="pieceJointeDetailsHeading"><span>Piece Jointe</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ pieceJointe.id }}</span>
+        </dd>
+        <dt><span>Type Piece</span></dt>
+        <dd>
+          <span>{{ pieceJointe.typePiece }}</span>
+        </dd>
+        <dt><span>Nom Piece</span></dt>
+        <dd>
+          <span>{{ pieceJointe.nomPiece }}</span>
+        </dd>
+        <dt><span>Demande</span></dt>
+        <dd>
+          <div *ngIf="pieceJointe.demande">
+            <a [routerLink]="['/demande', pieceJointe.demande?.id, 'view']">{{ pieceJointe.demande?.libelle }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/piece-jointe', pieceJointe.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

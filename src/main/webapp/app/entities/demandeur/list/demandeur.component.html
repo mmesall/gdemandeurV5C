@@ -1,0 +1,138 @@
+<div>
+  <h2 id="page-heading" data-cy="DemandeurHeading">
+    <span>Demandeurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-demandeur"
+        [routerLink]="['/demandeur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Demandeur </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="demandeurs?.length === 0">
+    <span>No demandeurs found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="demandeurs && demandeurs.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nom"><span>Nom</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="prenom"><span>Prenom</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateNaiss"><span>Date Naiss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="sexe"><span>Sexe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="telephone"><span>Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="profil"><span>Profil</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dossier.numDossier"><span>Dossier</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="user.login"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="eleve.cni"><span>Eleve</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="etudiant.cni"><span>Etudiant</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="professionnel.cni"><span>Professionnel</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demandeur of demandeurs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/demandeur', demandeur.id, 'view']">{{ demandeur.id }}</a>
+          </td>
+          <td>{{ demandeur.nom }}</td>
+          <td>{{ demandeur.prenom }}</td>
+          <td>{{ demandeur.dateNaiss | formatMediumDate }}</td>
+          <td>{{ demandeur.lieuNaiss }}</td>
+          <td>{{ demandeur.sexe }}</td>
+          <td>{{ demandeur.telephone }}</td>
+          <td>{{ demandeur.email }}</td>
+          <td>{{ demandeur.profil }}</td>
+          <td>
+            <div *ngIf="demandeur.dossier">
+              <a [routerLink]="['/dossier', demandeur.dossier?.id, 'view']">{{ demandeur.dossier?.numDossier }}</a>
+            </div>
+          </td>
+          <td>
+            {{ demandeur.user?.login }}
+          </td>
+          <td>
+            <div *ngIf="demandeur.eleve">
+              <a [routerLink]="['/eleve', demandeur.eleve?.id, 'view']">{{ demandeur.eleve?.cni }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="demandeur.etudiant">
+              <a [routerLink]="['/etudiant', demandeur.etudiant?.id, 'view']">{{ demandeur.etudiant?.cni }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="demandeur.professionnel">
+              <a [routerLink]="['/professionnel', demandeur.professionnel?.id, 'view']">{{ demandeur.professionnel?.cni }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/demandeur', demandeur.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/demandeur', demandeur.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(demandeur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="demandeurs && demandeurs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

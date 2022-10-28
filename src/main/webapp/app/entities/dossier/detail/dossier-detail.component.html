@@ -1,0 +1,96 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dossier">
+      <h2 data-cy="dossierDetailsHeading"><span>Dossier</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ dossier.id }}</span>
+        </dd>
+        <dt><span>Num Dossier</span></dt>
+        <dd>
+          <span>{{ dossier.numDossier }}</span>
+        </dd>
+        <dt><span>Type Demandeur</span></dt>
+        <dd>
+          <span>{{ dossier.typeDemandeur }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ dossier.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ dossier.prenom }}</span>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+          <span>{{ dossier.adresse }}</span>
+        </dd>
+        <dt><span>Region</span></dt>
+        <dd>
+          <span>{{ dossier.region }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ dossier.telephone }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ dossier.email }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="dossier.photo">
+            <a (click)="openFile(dossier.photo, dossier.photoContentType)">
+              <img [src]="'data:' + dossier.photoContentType + ';base64,' + dossier.photo" style="max-width: 100%" alt="dossier image" />
+            </a>
+            {{ dossier.photoContentType }}, {{ byteSize(dossier.photo) }}
+          </div>
+        </dd>
+        <dt><span>Cv</span></dt>
+        <dd>
+          <div *ngIf="dossier.cv">
+            <a (click)="openFile(dossier.cv, dossier.cvContentType)">open</a>
+            {{ dossier.cvContentType }}, {{ byteSize(dossier.cv) }}
+          </div>
+        </dd>
+        <dt><span>Lettre Motivation</span></dt>
+        <dd>
+          <span>{{ dossier.lettreMotivation }}</span>
+        </dd>
+        <dt><span>Diplome Requis</span></dt>
+        <dd>
+          <span>{{ dossier.diplomeRequis }}</span>
+        </dd>
+        <dt><span>Niveau Etude</span></dt>
+        <dd>
+          <span>{{ dossier.niveauEtude }}</span>
+        </dd>
+        <dt><span>Profession</span></dt>
+        <dd>
+          <span>{{ dossier.profession }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ dossier.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dossier', dossier.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

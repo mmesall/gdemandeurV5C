@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etablissement">
+      <h2 data-cy="etablissementDetailsHeading"><span>Etablissement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ etablissement.id }}</span>
+        </dd>
+        <dt><span>Nom Etablissement</span></dt>
+        <dd>
+          <span>{{ etablissement.nomEtablissement }}</span>
+        </dd>
+        <dt><span>Photo</span></dt>
+        <dd>
+          <div *ngIf="etablissement.photo">
+            <a (click)="openFile(etablissement.photo, etablissement.photoContentType)">
+              <img
+                [src]="'data:' + etablissement.photoContentType + ';base64,' + etablissement.photo"
+                style="max-width: 100%"
+                alt="etablissement image"
+              />
+            </a>
+            {{ etablissement.photoContentType }}, {{ byteSize(etablissement.photo) }}
+          </div>
+        </dd>
+        <dt><span>Adresse</span></dt>
+        <dd>
+          <span>{{ etablissement.adresse }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ etablissement.email }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ etablissement.telephone }}</span>
+        </dd>
+        <dt><span>Type Etablissement</span></dt>
+        <dd>
+          <span>{{ etablissement.typeEtablissement }}</span>
+        </dd>
+        <dt><span>Localite</span></dt>
+        <dd>
+          <div *ngIf="etablissement.localite">
+            <a [routerLink]="['/localite', etablissement.localite?.id, 'view']">{{ etablissement.localite?.region }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etablissement', etablissement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

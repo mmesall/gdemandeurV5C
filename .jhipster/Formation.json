@@ -1,0 +1,126 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114851",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "formation",
+  "fields": [
+    {
+      "fieldName": "nomFormation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typeFormation",
+      "fieldType": "TypeFormation",
+      "fieldValues": "INITIALE,CONTINUE"
+    },
+    {
+      "fieldName": "duree",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "admission",
+      "fieldType": "Admission",
+      "fieldValues": "CONCOURS,PC"
+    },
+    {
+      "fieldName": "diplomeRequis",
+      "fieldType": "DiplomeRequis",
+      "fieldValues": "ATTESTATION,CAP,BT,DUR,DNBA,BEP,BTS,BFEM,BAC,LICENCE,MASTER,Autres"
+    },
+    {
+      "fieldName": "autreDiplome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secteur",
+      "fieldType": "Secteur",
+      "fieldValues": "SANTE,BATIMENT,ELECTRICITE,ELEVAGE_PECHE,COUTURE,COIFFURE,AGROALIMENTAIRE,AGRICULTURE,TOURISME,GESTION_DE_LA_FAUNE_ET_DE_LA_FLORE,GENIE_RURAL,ARTISANAT,Autres"
+    },
+    {
+      "fieldName": "autreSecteur",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ficheFormation",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "programmes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "nomConcours",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOuverture",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateCloture",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateConcours",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "libellePC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montantPriseEnCharge",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "detailPC",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "nomDiplome",
+      "fieldType": "NomDiplome",
+      "fieldValues": "CPS,CAP,BEP,BT,METP,BTS,CQP,BTI,TitreProf,CAEP,TS,Autres"
+    },
+    {
+      "fieldName": "nomDebouche",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Formation",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "priseEnCharge",
+      "otherEntityRelationshipName": "formation",
+      "relationshipName": "priseEnCharge",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "concours",
+      "otherEntityRelationshipName": "formation",
+      "relationshipName": "concours",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "sessionForm",
+      "otherEntityRelationshipName": "formation",
+      "relationshipName": "sessionForm",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "demande",
+      "otherEntityRelationshipName": "formation",
+      "ownerSide": false,
+      "relationshipName": "demande",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

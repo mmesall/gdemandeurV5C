@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="professionnel">
+      <h2 data-cy="professionnelDetailsHeading"><span>Professionnel</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ professionnel.id }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ professionnel.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ professionnel.prenom }}</span>
+        </dd>
+        <dt><span>Date Naiss</span></dt>
+        <dd>
+          <span>{{ professionnel.dateNaiss | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Lieu Naiss</span></dt>
+        <dd>
+          <span>{{ professionnel.lieuNaiss }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ professionnel.sexe }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ professionnel.telephone }}</span>
+        </dd>
+        <dt><span>Adresse Physique</span></dt>
+        <dd>
+          <span>{{ professionnel.adressePhysique }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ professionnel.email }}</span>
+        </dd>
+        <dt><span>Cni</span></dt>
+        <dd>
+          <span>{{ professionnel.cni }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ professionnel.user?.login }}</span>
+        </dd>
+        <dt><span>Dossier</span></dt>
+        <dd>
+          <div *ngIf="professionnel.dossier">
+            <a [routerLink]="['/dossier', professionnel.dossier?.id, 'view']">{{ professionnel.dossier?.numDossier }}</a>
+          </div>
+        </dd>
+        <dt><span>Localite</span></dt>
+        <dd>
+          <div *ngIf="professionnel.localite">
+            <a [routerLink]="['/localite', professionnel.localite?.id, 'view']">{{ professionnel.localite?.region }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/professionnel', professionnel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

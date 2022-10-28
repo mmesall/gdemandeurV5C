@@ -1,6 +1,19 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 version: '3.8'
 services:
+  gesdem:
+    image: postgres:13.6
+    volumes:
+      - ~/volumes/jhipster/gesdem_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=gestionutilisateur
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=passer123
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 5433:5433
   keycloak:
     image: jboss/keycloak:16.1.0
     command:
@@ -10,7 +23,7 @@ services:
         '-Dkeycloak.migration.action=import',
         '-Dkeycloak.migration.provider=dir',
         '-Dkeycloak.migration.dir=/opt/jboss/keycloak/realm-config',
-        '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
+        '-Dkeycloak.migration.strategy=IGNORE_EXISTING',
         '-Djboss.socket.binding.port-offset=1000',
         '-Dkeycloak.profile.feature.upload_scripts=enabled',
       ]
@@ -19,10 +32,17 @@ services:
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
-      - DB_VENDOR=h2
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=gesdem
+      - DB_SCHEMA=public
+      - DB_DATABASE=gestionutilisateur
+      - DB_USER=postgres
+      - DB_PASSWORD=passer123
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
-      - 127.0.0.1:9080:9080
-      - 127.0.0.1:9443:9443
-      - 127.0.0.1:10990:10990
+      - 9080:9080
+      - 9443:9443
+      - 10990:10990
+    depends_on:
+      - gesdem

@@ -1,0 +1,84 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="agent">
+      <h2 data-cy="agentDetailsHeading"><span>Agent</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ agent.id }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ agent.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ agent.prenom }}</span>
+        </dd>
+        <dt><span>Date Naiss</span></dt>
+        <dd>
+          <span>{{ agent.dateNaiss | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Lieu Naiss</span></dt>
+        <dd>
+          <span>{{ agent.lieuNaiss }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ agent.sexe }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ agent.telephone }}</span>
+        </dd>
+        <dt><span>Adresse Physique</span></dt>
+        <dd>
+          <span>{{ agent.adressePhysique }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ agent.email }}</span>
+        </dd>
+        <dt><span>Cni</span></dt>
+        <dd>
+          <span>{{ agent.cni }}</span>
+        </dd>
+        <dt><span>Matricule</span></dt>
+        <dd>
+          <span>{{ agent.matricule }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ agent.user?.login }}</span>
+        </dd>
+        <dt><span>Services</span></dt>
+        <dd>
+          <div *ngIf="agent.services">
+            <a [routerLink]="['/services', agent.services?.id, 'view']">{{ agent.services?.nomService }}</a>
+          </div>
+        </dd>
+        <dt><span>Localite</span></dt>
+        <dd>
+          <div *ngIf="agent.localite">
+            <a [routerLink]="['/localite', agent.localite?.id, 'view']">{{ agent.localite?.region }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/agent', agent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

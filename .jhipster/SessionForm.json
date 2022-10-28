@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114850",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "session_form",
+  "fields": [
+    {
+      "fieldName": "nomSession",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "annee",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateDebutSess",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFinSess",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SessionForm",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomFormation",
+      "otherEntityName": "formation",
+      "otherEntityRelationshipName": "sessionForm",
+      "relationshipName": "formation",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomEtablissement",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "sessionForm",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

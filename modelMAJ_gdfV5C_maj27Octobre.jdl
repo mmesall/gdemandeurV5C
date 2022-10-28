@@ -1,0 +1,467 @@
+entity Localite {
+	region NomRegion required ,
+	autreRegion String,
+	departementDakar DAKAR ,
+	departementDiourbel DIOURBEL ,
+	departementFatick FATICK ,
+	departementKaffrine KAFFRINE ,
+	departementKaolack KAOLACK , 
+	departementKedougou KEDOUGOU ,
+	departementKolda KOLDA ,
+	departementLouga LOUGA ,
+	departementMatam MATAM ,
+	departementSaint SAINTLOUIS,
+	departementSedhiou SEDHIOU ,
+	departementTambacounda TAMBACOUNDA,
+	departementThis THIES ,
+	departementZiguinchor ZIGUINCHOR ,
+	autredepartementDakar String,
+	autredepartementDiourbel String,
+	autredepartementFatick String,
+	autredepartementKaffrine String,
+	autredepartementKaolack String, 
+	autredepartementKedougou String,
+	autredepartementKolda String,
+	autredepartementLouga String,
+	autredepartementMatam String,
+	autredepartementSaint String,
+	autredepartementSedhiou String,
+	autredepartementTambacounda String,
+	autredepartementThis String,
+	autredepartementZiguinchor String,
+	commune String required,
+	nomQuartier String,
+}
+
+enum NomRegion{
+	DAKAR,
+	DIOURBEL,
+	FATICK,
+	KAFFRINE,
+	KAOLACK,
+	KEDOUGOU,
+	KOLDA,
+	LOUGA,
+	MATAM,
+	SAINT_LOUIS,
+	SEDHIOU,
+	TAMBACOUNDA,
+	THIES,
+	ZIGINCHOR,
+	AUTRE
+}
+enum DAKAR {
+DAKAR, GUEDIAWAYE, PIKINE, RUFISQUE, AUTRE
+}
+enum DIOURBEL {
+BAMBAEY, DIOURBEL, MBACKE, AUTRE
+}
+enum FATICK {
+FATICK, FOUNDIOUGNE, GOSSAS, AUTRE
+}
+enum KAFFRINE {
+BIRKILANE, KAFFRINE, KOUNGHEUR, MALEM_HODAR, AUTRE
+}
+enum KAOLACK {
+GUINGUINEO, KAOLOACK, NIORO, AUTRE
+}
+enum KEDOUGOU{
+KEDOUGOU, SALAMATA, SARAYA, AUTRE
+}
+enum KOLDA {
+KOLDA, MEDINA_YORO_FOULAH, VELINGARA, AUTRE
+}
+enum LOUGA {
+KEBEMERE, LINGUERE, LOUGA, AUTRE
+}
+enum MATAM {
+KANELKANEL, MATAM, RANEROU_FERLO, AUTRE 
+}
+enum SAINTLOUIS {
+DAGANA, PODOR , SAINT_LOUIS, AUTRE
+}
+enum SEDHIOU {
+BOUNKILING, GOUDOMP, SEDHIOU, AUTRE 
+}
+enum TAMBACOUNDA {
+BAKEL, GOUDIRY, KOUMPENTOUM, TAMBACOUNDA, AUTRE 
+}
+enum THIES {
+MBOUR, THIES, TIVAOUANE, AUTRE
+}
+enum ZIGUINCHOR { //MAJ
+BIGNONA, OUSSOUYE, ZICHUINCHOR, AUTRE
+}
+
+entity Demande {
+	libelle String,
+	niveauEtude String,
+	etatDemande EtatDemande
+}
+
+enum EtatDemande{
+	OUVERTE, ENCOURS, FERMEE
+}
+
+entity Dossier {
+	numDossier String,
+	typeDemandeur TypeDemandeur
+	nom String,
+	prenom String,
+	adresse String,
+	region NomRegion,
+	telephone String,
+	email String,
+	photo ImageBlob,
+	cv AnyBlob,
+	lettreMotivation TextBlob,
+	diplomeRequis DiplomeRequis,
+	niveauEtude NiveauEtude,
+	profession String 	
+}
+
+enum TypeDemandeur{
+ ELEVE, ETUDIANT, PROFESSIONNEL
+}
+
+entity PieceJointe {
+	typePiece TypePiece,
+	nomPiece String,
+}
+
+enum TypePiece{
+	CV, DIPLOME, CNI, LM, PASSPORT
+}
+
+
+entity Services {
+	logo ImageBlob,
+	nomService String, 
+	chefService String,
+	description TextBlob,
+	isPilotage Boolean
+}
+
+entity Commission {
+	nomCommission String,
+	mission TextBlob
+}
+
+entity Membre {
+	nom String,
+	prenom String,
+	dateNaiss LocalDate,
+	lieuNaiss String,
+	sexe Sexe,
+	telephone Long,
+	adressePhysique String,
+	email String,
+	cni Long,
+	matricule String
+
+}
+
+entity Agent {
+		nom String,
+		prenom String,
+		dateNaiss LocalDate,
+		lieuNaiss String,
+		sexe Sexe,
+		telephone Long,
+		adressePhysique String,
+		email String,
+		cni Long,
+		matricule String
+}
+
+enum Sexe{
+	MASCULIN, FEMININ
+}
+
+enum Profil {
+	ELEVE, ETUDIANT , PROFESSIONNEL
+}
+
+entity Bailleur {
+	nomProjet String,
+	budgetPrevu Double,
+	budgetDepense Double,
+	budgetRestant Double,
+	nbrePC Long
+}
+
+entity Demandeur{
+	nom String,
+	prenom String,
+	dateNaiss LocalDate,
+	lieuNaiss String,
+	sexe Sexe,
+	telephone Long,
+	email String,
+	profil Profil
+}
+
+entity Eleve {
+	nom String,
+	prenom String,
+	dateNaiss LocalDate,
+	lieuNaiss String,
+	sexe Sexe,
+	telephone Long,
+	adressePhysique String,
+	email String,
+	cni Long
+}
+
+entity Etudiant {
+	nom String,
+	prenom String,
+	dateNaiss LocalDate,
+	lieuNaiss String,
+	sexe Sexe,
+	telephone Long,
+	adressePhysique String,
+	email String,
+	cni Long
+}
+
+entity Professionnel {
+	nom String,
+	prenom String,
+	dateNaiss LocalDate,
+	lieuNaiss String,
+	sexe Sexe,
+	telephone Long,
+	adressePhysique String,
+	email String,
+	cni Long
+}
+
+entity Concours {
+	nomConcours String,
+	dateOuverture LocalDate,
+	dateCloture LocalDate,
+	dateConcours LocalDate
+}
+
+entity PriseEnCharge {
+	libelle String,
+	montant Double,
+	nbrePC Long,
+	details String
+}
+
+entity SessionForm {
+	nomSession String,
+	annee String,
+	dateDebutSess LocalDate,
+	dateFinSess LocalDate
+}
+
+entity Formation {
+	nomFormation String,
+	typeFormation TypeFormation,
+	duree String,
+	admission Admission,
+	diplomeRequis DiplomeRequis,
+	autreDiplome String,
+	secteur Secteur,
+	autreSecteur String,
+	ficheFormation AnyBlob,
+	programmes TextBlob,
+	nomConcours String,
+	dateOuverture LocalDate,
+	dateCloture LocalDate,
+	dateConcours LocalDate,
+	libellePC String,
+	montantPriseEnCharge Double,
+	detailPC TextBlob, //MAJ_23_Aout
+	nomDiplome NomDiplome,
+	autreDiplome String  //MAJ_23_Aout
+	nomDebouche String
+}
+
+enum Admission{
+	CONCOURS, PC
+}
+
+enum TypeFormation{
+	INITIALE, CONTINUE
+}
+
+enum DiplomeRequis{
+	ATTESTATION,
+    CAP,
+    BT,
+    DUR,
+    DNBA,
+    BEP,
+    BTS,
+    BFEM,
+    BAC,
+    LICENCE,
+    MASTER,
+    Autres
+}
+
+enum Secteur{
+	SANTE,
+    BATIMENT,
+    ELECTRICITE,
+    ELEVAGE_PECHE,
+    COUTURE,
+    COIFFURE,
+    AGROALIMENTAIRE,
+    AGRICULTURE,
+    TOURISME,  
+	GESTION_DE_LA_FAUNE_ET_DE_LA_FLORE,
+    GENIE_RURAL,
+	ARTISANAT,
+    Autres
+}
+
+
+entity Etablissement {
+	nomEtablissement String,
+	photo ImageBlob,
+	adresse String,
+	email String,
+	telephone Long,
+	typeEtablissement TypeEtablissement
+}
+
+enum TypeEtablissement{
+	CFP, LYCEE
+}
+
+entity Filiere {
+	nomFiliere NomFiliere, 
+	niveauEtude NiveauEtude, 
+	programme TextBlob,
+	autreNiveauEtude String,
+	autreFiliere String
+}
+
+enum NiveauEtude{
+	Cinquieme,
+	Quatrieme,
+	Troisieme,
+	BFEM,
+	Equivalent_BFEM,
+	Seconde,
+	Premiere,
+	Terminal,
+	BAC,
+	Equivalent_BAC,
+	Licenece1,
+	Licence2,
+    CAP1,
+    CAP2,
+    CAP3,
+    BEP1,
+    BEP2,
+    BT1,
+    BT2,
+    BT3,
+    BTS1,
+    BTS2,
+	Licence3,
+	Master,
+	Doctorat,
+    Autres
+}
+
+enum NomFiliere
+{
+	AGRI_ELEVAGE
+	AGRICULTURE,
+	PECHE,
+	ELEVAGE,
+	MINE_CARRIERES,
+	ARTISANAT,
+	BATIMAT_TRAVAUX_PUBLIQUES,
+	MECANIQUE,
+	MENUISERIE_BOIS,
+	HABILLEMENT,
+	AGROALIMENTAIRE,
+	ELECTROTECHNIQUE_ELECTRIQUE_ENERGETIQUE,
+	HYDRAULIQUE,
+	STRUCTURE_METALLIQUE,
+	STRUCTURE_PLASTIQUE,
+	BEAUTE_ESTHETIQUE,
+	DEVELOPPEMENT_TERRITORIAL,
+	DROIT,
+	ECONOMIE_GESTION_COMMERCE_LOGISTIQUE,
+	INSDUSTRIE_CULTURELLE_ET_CREATIVE,
+	INFORMATIQUE_ET_NUMERIQUE,
+	RESTAURATION_ET_HOTELLORIE,
+	SANTE_BIOLOGIE_CHIMIE,
+	SPORT,
+	TOURISME,
+	ENVIRONNEMENT,
+	AUTRES
+}
+
+entity Serie {
+	nomSerie NomSerie,
+	niveauEtude NiveauEtude,
+	programme TextBlob,
+	autreSerie String
+}
+
+enum NomSerie{
+STEG, STIDD_M, STIDD_E, S3, S4, S5, F6, Autres
+}
+
+enum NomDiplome{
+CPS, CAP, BEP, BT, METP, BTS, CQP, BTI, TitreProf, CAEP, TS, Autres
+}
+
+
+relationship OneToOne {
+	Services{Commission(nomCommission)} to Commission{services},
+	Eleve{User(login)} to User{eleve},
+	Etudiant{User(login)} to User{etudiant},
+	Professionnel{User(login)} to User{professionnel},
+    Agent{User(login)} to User{agent},
+	Eleve{Dossier(numDossier)} to Dossier{eleve},
+	Etudiant{Dossier(numDossier)} to Dossier{etudiant},
+	Professionnel{Dossier(numDossier)} to Dossier{professionnel},
+	Demandeur{Dossier(numDossier)} to Dossier{demandeur},
+	Bailleur{Agent(matricule)} to Agent{bailleur},
+	Demandeur{User(login)} to User{demandeur},
+	Demandeur{Eleve(cni)} to Eleve{demandeur},
+	Demandeur{Etudiant(cni)} to Etudiant{demandeur},
+	Demandeur{Professionnel(cni)} to Professionnel{demandeur},
+	Demande{Formation(nomFormation)} to Formation{demande},
+	Membre{User(login)} to User{membre}, 
+	Dossier{User(login)} to User{dossier},
+	Membre{Agent(matricule)} to Agent{membre}
+}
+
+
+relationship OneToMany {
+	Commission{membre} to Membre{Commission(nomCommission)},
+	Services{agent} to Agent{Services(nomService)},
+	Bailleur{priseEnCharge} to PriseEnCharge{Bailleur(nomProjet)},
+	Formation{priseEnCharge} to PriseEnCharge{Formation(nomFormation)},
+	Formation{concours} to Concours{Formation(nomFormation)},
+	Etablissement{filiere} to Filiere{Etablissement(nomEtablissement)},
+	Etablissement{serie} to Serie{Etablissement(nomEtablissement)},
+	Localite{etablissement(adresse)} to Etablissement{Localite(region)},//MAJ
+	Localite{eleve(adresse)} to Eleve{Localite(region)}, //MAJ
+	Localite{etudiant(adresse)} to Etudiant{Localite(region)}, //MAJ
+	Localite{professionnel(adresse)} to Professionnel{Localite(region)}, //MAJ
+	Localite{agent} to Agent{Localite(region)}, //MAJ
+	Dossier{demande} to Demande{Dossier(numDossier)},
+	Demande{pieceJointe} to PieceJointe{Demande(libelle)},
+	Formation{sessionForm} to SessionForm{Formation(nomFormation)},
+	Etablissement{sessionForm} to SessionForm{Etablissement(nomEtablissement)}
+}
+
+
+// Set service options to all except few
+service all with serviceImpl
+
+
+paginate * with pagination 

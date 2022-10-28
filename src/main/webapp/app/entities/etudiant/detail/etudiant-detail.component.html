@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etudiant">
+      <h2 data-cy="etudiantDetailsHeading"><span>Etudiant</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ etudiant.id }}</span>
+        </dd>
+        <dt><span>Nom</span></dt>
+        <dd>
+          <span>{{ etudiant.nom }}</span>
+        </dd>
+        <dt><span>Prenom</span></dt>
+        <dd>
+          <span>{{ etudiant.prenom }}</span>
+        </dd>
+        <dt><span>Date Naiss</span></dt>
+        <dd>
+          <span>{{ etudiant.dateNaiss | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Lieu Naiss</span></dt>
+        <dd>
+          <span>{{ etudiant.lieuNaiss }}</span>
+        </dd>
+        <dt><span>Sexe</span></dt>
+        <dd>
+          <span>{{ etudiant.sexe }}</span>
+        </dd>
+        <dt><span>Telephone</span></dt>
+        <dd>
+          <span>{{ etudiant.telephone }}</span>
+        </dd>
+        <dt><span>Adresse Physique</span></dt>
+        <dd>
+          <span>{{ etudiant.adressePhysique }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ etudiant.email }}</span>
+        </dd>
+        <dt><span>Cni</span></dt>
+        <dd>
+          <span>{{ etudiant.cni }}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+          <span>{{ etudiant.user?.login }}</span>
+        </dd>
+        <dt><span>Dossier</span></dt>
+        <dd>
+          <div *ngIf="etudiant.dossier">
+            <a [routerLink]="['/dossier', etudiant.dossier?.id, 'view']">{{ etudiant.dossier?.numDossier }}</a>
+          </div>
+        </dd>
+        <dt><span>Localite</span></dt>
+        <dd>
+          <div *ngIf="etudiant.localite">
+            <a [routerLink]="['/localite', etudiant.localite?.id, 'view']">{{ etudiant.localite?.region }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etudiant', etudiant.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

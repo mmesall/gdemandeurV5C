@@ -1,0 +1,9 @@
+export enum ZIGUINCHOR {
+  BIGNONA = 'BIGNONA',
+
+  OUSSOUYE = 'OUSSOUYE',
+
+  ZICHUINCHOR = 'ZICHUINCHOR',
+
+  AUTRE = 'AUTRE',
+}

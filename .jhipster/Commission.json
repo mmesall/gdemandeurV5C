@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114840",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "commission",
+  "fields": [
+    {
+      "fieldName": "nomCommission",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mission",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Commission",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "membre",
+      "otherEntityRelationshipName": "commission",
+      "relationshipName": "membre",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "services",
+      "otherEntityRelationshipName": "commission",
+      "ownerSide": false,
+      "relationshipName": "services",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

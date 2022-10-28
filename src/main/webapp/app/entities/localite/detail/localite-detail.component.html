@@ -1,0 +1,156 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="localite">
+      <h2 data-cy="localiteDetailsHeading"><span>Localite</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ localite.id }}</span>
+        </dd>
+        <dt><span>Region</span></dt>
+        <dd>
+          <span>{{ localite.region }}</span>
+        </dd>
+        <dt><span>Autre Region</span></dt>
+        <dd>
+          <span>{{ localite.autreRegion }}</span>
+        </dd>
+        <dt><span>Departement Dakar</span></dt>
+        <dd>
+          <span>{{ localite.departementDakar }}</span>
+        </dd>
+        <dt><span>Departement Diourbel</span></dt>
+        <dd>
+          <span>{{ localite.departementDiourbel }}</span>
+        </dd>
+        <dt><span>Departement Fatick</span></dt>
+        <dd>
+          <span>{{ localite.departementFatick }}</span>
+        </dd>
+        <dt><span>Departement Kaffrine</span></dt>
+        <dd>
+          <span>{{ localite.departementKaffrine }}</span>
+        </dd>
+        <dt><span>Departement Kaolack</span></dt>
+        <dd>
+          <span>{{ localite.departementKaolack }}</span>
+        </dd>
+        <dt><span>Departement Kedougou</span></dt>
+        <dd>
+          <span>{{ localite.departementKedougou }}</span>
+        </dd>
+        <dt><span>Departement Kolda</span></dt>
+        <dd>
+          <span>{{ localite.departementKolda }}</span>
+        </dd>
+        <dt><span>Departement Louga</span></dt>
+        <dd>
+          <span>{{ localite.departementLouga }}</span>
+        </dd>
+        <dt><span>Departement Matam</span></dt>
+        <dd>
+          <span>{{ localite.departementMatam }}</span>
+        </dd>
+        <dt><span>Departement Saint</span></dt>
+        <dd>
+          <span>{{ localite.departementSaint }}</span>
+        </dd>
+        <dt><span>Departement Sedhiou</span></dt>
+        <dd>
+          <span>{{ localite.departementSedhiou }}</span>
+        </dd>
+        <dt><span>Departement Tambacounda</span></dt>
+        <dd>
+          <span>{{ localite.departementTambacounda }}</span>
+        </dd>
+        <dt><span>Departement This</span></dt>
+        <dd>
+          <span>{{ localite.departementThis }}</span>
+        </dd>
+        <dt><span>Departement Ziguinchor</span></dt>
+        <dd>
+          <span>{{ localite.departementZiguinchor }}</span>
+        </dd>
+        <dt><span>Autredepartement Dakar</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementDakar }}</span>
+        </dd>
+        <dt><span>Autredepartement Diourbel</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementDiourbel }}</span>
+        </dd>
+        <dt><span>Autredepartement Fatick</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementFatick }}</span>
+        </dd>
+        <dt><span>Autredepartement Kaffrine</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementKaffrine }}</span>
+        </dd>
+        <dt><span>Autredepartement Kaolack</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementKaolack }}</span>
+        </dd>
+        <dt><span>Autredepartement Kedougou</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementKedougou }}</span>
+        </dd>
+        <dt><span>Autredepartement Kolda</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementKolda }}</span>
+        </dd>
+        <dt><span>Autredepartement Louga</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementLouga }}</span>
+        </dd>
+        <dt><span>Autredepartement Matam</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementMatam }}</span>
+        </dd>
+        <dt><span>Autredepartement Saint</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementSaint }}</span>
+        </dd>
+        <dt><span>Autredepartement Sedhiou</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementSedhiou }}</span>
+        </dd>
+        <dt><span>Autredepartement Tambacounda</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementTambacounda }}</span>
+        </dd>
+        <dt><span>Autredepartement This</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementThis }}</span>
+        </dd>
+        <dt><span>Autredepartement Ziguinchor</span></dt>
+        <dd>
+          <span>{{ localite.autredepartementZiguinchor }}</span>
+        </dd>
+        <dt><span>Commune</span></dt>
+        <dd>
+          <span>{{ localite.commune }}</span>
+        </dd>
+        <dt><span>Nom Quartier</span></dt>
+        <dd>
+          <span>{{ localite.nomQuartier }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/localite', localite.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

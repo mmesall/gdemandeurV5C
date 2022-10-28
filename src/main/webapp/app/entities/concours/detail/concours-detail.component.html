@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="concours">
+      <h2 data-cy="concoursDetailsHeading"><span>Concours</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ concours.id }}</span>
+        </dd>
+        <dt><span>Nom Concours</span></dt>
+        <dd>
+          <span>{{ concours.nomConcours }}</span>
+        </dd>
+        <dt><span>Date Ouverture</span></dt>
+        <dd>
+          <span>{{ concours.dateOuverture | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Cloture</span></dt>
+        <dd>
+          <span>{{ concours.dateCloture | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Date Concours</span></dt>
+        <dd>
+          <span>{{ concours.dateConcours | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Formation</span></dt>
+        <dd>
+          <div *ngIf="concours.formation">
+            <a [routerLink]="['/formation', concours.formation?.id, 'view']">{{ concours.formation?.nomFormation }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/concours', concours.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

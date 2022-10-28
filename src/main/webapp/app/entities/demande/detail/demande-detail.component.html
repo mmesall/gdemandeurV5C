@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="demande">
+      <h2 data-cy="demandeDetailsHeading"><span>Demande</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ demande.id }}</span>
+        </dd>
+        <dt><span>Libelle</span></dt>
+        <dd>
+          <span>{{ demande.libelle }}</span>
+        </dd>
+        <dt><span>Niveau Etude</span></dt>
+        <dd>
+          <span>{{ demande.niveauEtude }}</span>
+        </dd>
+        <dt><span>Etat Demande</span></dt>
+        <dd>
+          <span>{{ demande.etatDemande }}</span>
+        </dd>
+        <dt><span>Formation</span></dt>
+        <dd>
+          <div *ngIf="demande.formation">
+            <a [routerLink]="['/formation', demande.formation?.id, 'view']">{{ demande.formation?.nomFormation }}</a>
+          </div>
+        </dd>
+        <dt><span>Dossier</span></dt>
+        <dd>
+          <div *ngIf="demande.dossier">
+            <a [routerLink]="['/dossier', demande.dossier?.id, 'view']">{{ demande.dossier?.numDossier }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/demande', demande.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

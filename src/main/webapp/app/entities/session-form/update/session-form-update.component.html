@@ -1,0 +1,123 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-session-form-heading" data-cy="SessionFormCreateUpdateHeading">Create or edit a Session Form</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomSession">Nom Session</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomSession"
+            id="field_nomSession"
+            data-cy="nomSession"
+            formControlName="nomSession"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_annee">Annee</label>
+          <input type="text" class="form-control" name="annee" id="field_annee" data-cy="annee" formControlName="annee" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateDebutSess">Date Debut Sess</label>
+          <div class="input-group">
+            <input
+              id="field_dateDebutSess"
+              data-cy="dateDebutSess"
+              type="text"
+              class="form-control"
+              name="dateDebutSess"
+              ngbDatepicker
+              #dateDebutSessDp="ngbDatepicker"
+              formControlName="dateDebutSess"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateDebutSessDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateFinSess">Date Fin Sess</label>
+          <div class="input-group">
+            <input
+              id="field_dateFinSess"
+              data-cy="dateFinSess"
+              type="text"
+              class="form-control"
+              name="dateFinSess"
+              ngbDatepicker
+              #dateFinSessDp="ngbDatepicker"
+              formControlName="dateFinSess"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateFinSessDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_formation">Formation</label>
+          <select class="form-control" id="field_formation" data-cy="formation" name="formation" formControlName="formation">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="formationOption.id === editForm.get('formation')!.value?.id ? editForm.get('formation')!.value : formationOption"
+              *ngFor="let formationOption of formationsSharedCollection; trackBy: trackFormationById"
+            >
+              {{ formationOption.nomFormation }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_etablissement">Etablissement</label>
+          <select
+            class="form-control"
+            id="field_etablissement"
+            data-cy="etablissement"
+            name="etablissement"
+            formControlName="etablissement"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                etablissementOption.id === editForm.get('etablissement')!.value?.id
+                  ? editForm.get('etablissement')!.value
+                  : etablissementOption
+              "
+              *ngFor="let etablissementOption of etablissementsSharedCollection; trackBy: trackEtablissementById"
+            >
+              {{ etablissementOption.nomEtablissement }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

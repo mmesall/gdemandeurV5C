@@ -1,0 +1,112 @@
+<div>
+  <h2 id="page-heading" data-cy="DemandeHeading">
+    <span>Demandes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-demande"
+        [routerLink]="['/demande/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Demande </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="demandes?.length === 0">
+    <span>No demandes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="demandes && demandes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libelle"><span>Libelle</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="niveauEtude"><span>Niveau Etude</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="etatDemande"><span>Etat Demande</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="formation.nomFormation"><span>Formation</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dossier.numDossier"><span>Dossier</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demande of demandes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/demande', demande.id, 'view']">{{ demande.id }}</a>
+          </td>
+          <td>{{ demande.libelle }}</td>
+          <td>{{ demande.niveauEtude }}</td>
+          <td>{{ demande.etatDemande }}</td>
+          <td>
+            <div *ngIf="demande.formation">
+              <a [routerLink]="['/formation', demande.formation?.id, 'view']">{{ demande.formation?.nomFormation }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="demande.dossier">
+              <a [routerLink]="['/dossier', demande.dossier?.id, 'view']">{{ demande.dossier?.numDossier }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/demande', demande.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/demande', demande.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(demande)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="demandes && demandes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

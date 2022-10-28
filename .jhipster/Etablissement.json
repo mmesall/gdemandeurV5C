@@ -1,0 +1,68 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114852",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "etablissement",
+  "fields": [
+    {
+      "fieldName": "nomEtablissement",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "typeEtablissement",
+      "fieldType": "TypeEtablissement",
+      "fieldValues": "CFP,LYCEE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Etablissement",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "filiere",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "filiere",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "serie",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "serie",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "sessionForm",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "sessionForm",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "region",
+      "otherEntityName": "localite",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "localite",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

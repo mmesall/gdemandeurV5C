@@ -1,0 +1,91 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114844",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "demandeur",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaiss",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "lieuNaiss",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "profil",
+      "fieldType": "Profil",
+      "fieldValues": "ELEVE,ETUDIANT,PROFESSIONNEL"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Demandeur",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "numDossier",
+      "otherEntityName": "dossier",
+      "otherEntityRelationshipName": "demandeur",
+      "ownerSide": true,
+      "relationshipName": "dossier",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "demandeur",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "cni",
+      "otherEntityName": "eleve",
+      "otherEntityRelationshipName": "demandeur",
+      "ownerSide": true,
+      "relationshipName": "eleve",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "cni",
+      "otherEntityName": "etudiant",
+      "otherEntityRelationshipName": "demandeur",
+      "ownerSide": true,
+      "relationshipName": "etudiant",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "cni",
+      "otherEntityName": "professionnel",
+      "otherEntityRelationshipName": "demandeur",
+      "ownerSide": true,
+      "relationshipName": "professionnel",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,94 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114842",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "agent",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaiss",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "lieuNaiss",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "adressePhysique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cni",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "matricule",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Agent",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "agent",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "bailleur",
+      "otherEntityRelationshipName": "agent",
+      "ownerSide": false,
+      "relationshipName": "bailleur",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "membre",
+      "otherEntityRelationshipName": "agent",
+      "ownerSide": false,
+      "relationshipName": "membre",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nomService",
+      "otherEntityName": "services",
+      "otherEntityRelationshipName": "agent",
+      "relationshipName": "services",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "region",
+      "otherEntityName": "localite",
+      "otherEntityRelationshipName": "agent",
+      "relationshipName": "localite",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

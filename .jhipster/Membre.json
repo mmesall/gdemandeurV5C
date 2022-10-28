@@ -1,0 +1,81 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114841",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "membre",
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateNaiss",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "lieuNaiss",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sexe",
+      "fieldType": "Sexe",
+      "fieldValues": "MASCULIN,FEMININ"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "adressePhysique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cni",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "matricule",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Membre",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "membre",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "matricule",
+      "otherEntityName": "agent",
+      "otherEntityRelationshipName": "membre",
+      "ownerSide": true,
+      "relationshipName": "agent",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nomCommission",
+      "otherEntityName": "commission",
+      "otherEntityRelationshipName": "membre",
+      "relationshipName": "commission",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

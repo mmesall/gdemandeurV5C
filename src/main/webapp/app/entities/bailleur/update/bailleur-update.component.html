@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-bailleur-heading" data-cy="BailleurCreateUpdateHeading">Create or edit a Bailleur</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomProjet">Nom Projet</label>
+          <input type="text" class="form-control" name="nomProjet" id="field_nomProjet" data-cy="nomProjet" formControlName="nomProjet" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_budgetPrevu">Budget Prevu</label>
+          <input
+            type="number"
+            class="form-control"
+            name="budgetPrevu"
+            id="field_budgetPrevu"
+            data-cy="budgetPrevu"
+            formControlName="budgetPrevu"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_budgetDepense">Budget Depense</label>
+          <input
+            type="number"
+            class="form-control"
+            name="budgetDepense"
+            id="field_budgetDepense"
+            data-cy="budgetDepense"
+            formControlName="budgetDepense"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_budgetRestant">Budget Restant</label>
+          <input
+            type="number"
+            class="form-control"
+            name="budgetRestant"
+            id="field_budgetRestant"
+            data-cy="budgetRestant"
+            formControlName="budgetRestant"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nbrePC">Nbre PC</label>
+          <input type="number" class="form-control" name="nbrePC" id="field_nbrePC" data-cy="nbrePC" formControlName="nbrePC" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_agent">Agent</label>
+          <select class="form-control" id="field_agent" data-cy="agent" name="agent" formControlName="agent">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="agentOption.id === editForm.get('agent')!.value?.id ? editForm.get('agent')!.value : agentOption"
+              *ngFor="let agentOption of agentsCollection; trackBy: trackAgentById"
+            >
+              {{ agentOption.matricule }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

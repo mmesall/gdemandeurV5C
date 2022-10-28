@@ -1,0 +1,162 @@
+<div>
+  <h2 id="page-heading" data-cy="LocaliteHeading">
+    <span>Localites</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-localite"
+        [routerLink]="['/localite/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Localite </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="localites?.length === 0">
+    <span>No localites found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="localites && localites.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="region"><span>Region</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autreRegion"><span>Autre Region</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementDakar"><span>Departement Dakar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementDiourbel"><span>Departement Diourbel</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementFatick"><span>Departement Fatick</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementKaffrine"><span>Departement Kaffrine</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementKaolack"><span>Departement Kaolack</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementKedougou"><span>Departement Kedougou</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementKolda"><span>Departement Kolda</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementLouga"><span>Departement Louga</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementMatam"><span>Departement Matam</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementSaint"><span>Departement Saint</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementSedhiou"><span>Departement Sedhiou</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementTambacounda"><span>Departement Tambacounda</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementThis"><span>Departement This</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="departementZiguinchor"><span>Departement Ziguinchor</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementDakar"><span>Autredepartement Dakar</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementDiourbel"><span>Autredepartement Diourbel</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementFatick"><span>Autredepartement Fatick</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementKaffrine"><span>Autredepartement Kaffrine</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementKaolack"><span>Autredepartement Kaolack</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementKedougou"><span>Autredepartement Kedougou</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementKolda"><span>Autredepartement Kolda</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementLouga"><span>Autredepartement Louga</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementMatam"><span>Autredepartement Matam</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementSaint"><span>Autredepartement Saint</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementSedhiou"><span>Autredepartement Sedhiou</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementTambacounda">
+            <span>Autredepartement Tambacounda</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="autredepartementThis"><span>Autredepartement This</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autredepartementZiguinchor">
+            <span>Autredepartement Ziguinchor</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="commune"><span>Commune</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomQuartier"><span>Nom Quartier</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let localite of localites; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/localite', localite.id, 'view']">{{ localite.id }}</a>
+          </td>
+          <td>{{ localite.region }}</td>
+          <td>{{ localite.autreRegion }}</td>
+          <td>{{ localite.departementDakar }}</td>
+          <td>{{ localite.departementDiourbel }}</td>
+          <td>{{ localite.departementFatick }}</td>
+          <td>{{ localite.departementKaffrine }}</td>
+          <td>{{ localite.departementKaolack }}</td>
+          <td>{{ localite.departementKedougou }}</td>
+          <td>{{ localite.departementKolda }}</td>
+          <td>{{ localite.departementLouga }}</td>
+          <td>{{ localite.departementMatam }}</td>
+          <td>{{ localite.departementSaint }}</td>
+          <td>{{ localite.departementSedhiou }}</td>
+          <td>{{ localite.departementTambacounda }}</td>
+          <td>{{ localite.departementThis }}</td>
+          <td>{{ localite.departementZiguinchor }}</td>
+          <td>{{ localite.autredepartementDakar }}</td>
+          <td>{{ localite.autredepartementDiourbel }}</td>
+          <td>{{ localite.autredepartementFatick }}</td>
+          <td>{{ localite.autredepartementKaffrine }}</td>
+          <td>{{ localite.autredepartementKaolack }}</td>
+          <td>{{ localite.autredepartementKedougou }}</td>
+          <td>{{ localite.autredepartementKolda }}</td>
+          <td>{{ localite.autredepartementLouga }}</td>
+          <td>{{ localite.autredepartementMatam }}</td>
+          <td>{{ localite.autredepartementSaint }}</td>
+          <td>{{ localite.autredepartementSedhiou }}</td>
+          <td>{{ localite.autredepartementTambacounda }}</td>
+          <td>{{ localite.autredepartementThis }}</td>
+          <td>{{ localite.autredepartementZiguinchor }}</td>
+          <td>{{ localite.commune }}</td>
+          <td>{{ localite.nomQuartier }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/localite', localite.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/localite', localite.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(localite)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="localites && localites.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

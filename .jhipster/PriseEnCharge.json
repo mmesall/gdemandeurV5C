@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114849",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "prise_en_charge",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "nbrePC",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "details",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PriseEnCharge",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomProjet",
+      "otherEntityName": "bailleur",
+      "otherEntityRelationshipName": "priseEnCharge",
+      "relationshipName": "bailleur",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomFormation",
+      "otherEntityName": "formation",
+      "otherEntityRelationshipName": "priseEnCharge",
+      "relationshipName": "formation",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="filiere">
+      <h2 data-cy="filiereDetailsHeading"><span>Filiere</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ filiere.id }}</span>
+        </dd>
+        <dt><span>Nom Filiere</span></dt>
+        <dd>
+          <span>{{ filiere.nomFiliere }}</span>
+        </dd>
+        <dt><span>Niveau Etude</span></dt>
+        <dd>
+          <span>{{ filiere.niveauEtude }}</span>
+        </dd>
+        <dt><span>Programme</span></dt>
+        <dd>
+          <span>{{ filiere.programme }}</span>
+        </dd>
+        <dt><span>Autre Niveau Etude</span></dt>
+        <dd>
+          <span>{{ filiere.autreNiveauEtude }}</span>
+        </dd>
+        <dt><span>Autre Filiere</span></dt>
+        <dd>
+          <span>{{ filiere.autreFiliere }}</span>
+        </dd>
+        <dt><span>Etablissement</span></dt>
+        <dd>
+          <div *ngIf="filiere.etablissement">
+            <a [routerLink]="['/etablissement', filiere.etablissement?.id, 'view']">{{ filiere.etablissement?.nomEtablissement }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/filiere', filiere.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

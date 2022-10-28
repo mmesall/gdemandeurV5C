@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="services">
+      <h2 data-cy="servicesDetailsHeading"><span>Services</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ services.id }}</span>
+        </dd>
+        <dt><span>Logo</span></dt>
+        <dd>
+          <div *ngIf="services.logo">
+            <a (click)="openFile(services.logo, services.logoContentType)">
+              <img [src]="'data:' + services.logoContentType + ';base64,' + services.logo" style="max-width: 100%" alt="services image" />
+            </a>
+            {{ services.logoContentType }}, {{ byteSize(services.logo) }}
+          </div>
+        </dd>
+        <dt><span>Nom Service</span></dt>
+        <dd>
+          <span>{{ services.nomService }}</span>
+        </dd>
+        <dt><span>Chef Service</span></dt>
+        <dd>
+          <span>{{ services.chefService }}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+          <span>{{ services.description }}</span>
+        </dd>
+        <dt><span>Is Pilotage</span></dt>
+        <dd>
+          <span>{{ services.isPilotage }}</span>
+        </dd>
+        <dt><span>Commission</span></dt>
+        <dd>
+          <div *ngIf="services.commission">
+            <a [routerLink]="['/commission', services.commission?.id, 'view']">{{ services.commission?.nomCommission }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/services', services.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

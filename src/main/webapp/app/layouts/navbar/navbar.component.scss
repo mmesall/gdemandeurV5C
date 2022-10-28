@@ -17,9 +17,19 @@ Navbar
 
 .navbar {
   padding: 0.2rem 1rem;
+  background-color: #0000ff;
+
+  ul.navbar-nav {
+    .nav-item {
+      margin-left: 0.5em;
+      font-size: large;
+    }
+  }
 
   a.nav-link {
-    font-weight: 400;
+    font-weight: 600;
+    font-style: bold;
+    color: aliceblue;
   }
 }
 
@@ -31,6 +41,6 @@ Logo styles
   width: 45px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  background: url('../../../content/images/logo-formation.webp') no-repeat center center;
   background-size: contain;
 }

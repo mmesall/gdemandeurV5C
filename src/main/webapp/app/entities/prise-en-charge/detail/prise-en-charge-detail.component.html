@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="priseEnCharge">
+      <h2 data-cy="priseEnChargeDetailsHeading"><span>Prise En Charge</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ priseEnCharge.id }}</span>
+        </dd>
+        <dt><span>Libelle</span></dt>
+        <dd>
+          <span>{{ priseEnCharge.libelle }}</span>
+        </dd>
+        <dt><span>Montant</span></dt>
+        <dd>
+          <span>{{ priseEnCharge.montant }}</span>
+        </dd>
+        <dt><span>Nbre PC</span></dt>
+        <dd>
+          <span>{{ priseEnCharge.nbrePC }}</span>
+        </dd>
+        <dt><span>Details</span></dt>
+        <dd>
+          <span>{{ priseEnCharge.details }}</span>
+        </dd>
+        <dt><span>Bailleur</span></dt>
+        <dd>
+          <div *ngIf="priseEnCharge.bailleur">
+            <a [routerLink]="['/bailleur', priseEnCharge.bailleur?.id, 'view']">{{ priseEnCharge.bailleur?.nomProjet }}</a>
+          </div>
+        </dd>
+        <dt><span>Formation</span></dt>
+        <dd>
+          <div *ngIf="priseEnCharge.formation">
+            <a [routerLink]="['/formation', priseEnCharge.formation?.id, 'view']">{{ priseEnCharge.formation?.nomFormation }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/prise-en-charge', priseEnCharge.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

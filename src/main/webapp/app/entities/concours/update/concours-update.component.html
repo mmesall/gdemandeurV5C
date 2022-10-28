@@ -1,0 +1,114 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-concours-heading" data-cy="ConcoursCreateUpdateHeading">Create or edit a Concours</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomConcours">Nom Concours</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomConcours"
+            id="field_nomConcours"
+            data-cy="nomConcours"
+            formControlName="nomConcours"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateOuverture">Date Ouverture</label>
+          <div class="input-group">
+            <input
+              id="field_dateOuverture"
+              data-cy="dateOuverture"
+              type="text"
+              class="form-control"
+              name="dateOuverture"
+              ngbDatepicker
+              #dateOuvertureDp="ngbDatepicker"
+              formControlName="dateOuverture"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateOuvertureDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateCloture">Date Cloture</label>
+          <div class="input-group">
+            <input
+              id="field_dateCloture"
+              data-cy="dateCloture"
+              type="text"
+              class="form-control"
+              name="dateCloture"
+              ngbDatepicker
+              #dateClotureDp="ngbDatepicker"
+              formControlName="dateCloture"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateClotureDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateConcours">Date Concours</label>
+          <div class="input-group">
+            <input
+              id="field_dateConcours"
+              data-cy="dateConcours"
+              type="text"
+              class="form-control"
+              name="dateConcours"
+              ngbDatepicker
+              #dateConcoursDp="ngbDatepicker"
+              formControlName="dateConcours"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateConcoursDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_formation">Formation</label>
+          <select class="form-control" id="field_formation" data-cy="formation" name="formation" formControlName="formation">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="formationOption.id === editForm.get('formation')!.value?.id ? editForm.get('formation')!.value : formationOption"
+              *ngFor="let formationOption of formationsSharedCollection; trackBy: trackFormationById"
+            >
+              {{ formationOption.nomFormation }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20221027114836",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "demande",
+  "fields": [
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "niveauEtude",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "etatDemande",
+      "fieldType": "EtatDemande",
+      "fieldValues": "OUVERTE,ENCOURS,FERMEE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Demande",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomFormation",
+      "otherEntityName": "formation",
+      "otherEntityRelationshipName": "demande",
+      "ownerSide": true,
+      "relationshipName": "formation",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "pieceJointe",
+      "otherEntityRelationshipName": "demande",
+      "relationshipName": "pieceJointe",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "numDossier",
+      "otherEntityName": "dossier",
+      "otherEntityRelationshipName": "demande",
+      "relationshipName": "dossier",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

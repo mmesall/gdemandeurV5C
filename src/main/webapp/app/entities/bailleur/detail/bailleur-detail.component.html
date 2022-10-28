@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="bailleur">
+      <h2 data-cy="bailleurDetailsHeading"><span>Bailleur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ bailleur.id }}</span>
+        </dd>
+        <dt><span>Nom Projet</span></dt>
+        <dd>
+          <span>{{ bailleur.nomProjet }}</span>
+        </dd>
+        <dt><span>Budget Prevu</span></dt>
+        <dd>
+          <span>{{ bailleur.budgetPrevu }}</span>
+        </dd>
+        <dt><span>Budget Depense</span></dt>
+        <dd>
+          <span>{{ bailleur.budgetDepense }}</span>
+        </dd>
+        <dt><span>Budget Restant</span></dt>
+        <dd>
+          <span>{{ bailleur.budgetRestant }}</span>
+        </dd>
+        <dt><span>Nbre PC</span></dt>
+        <dd>
+          <span>{{ bailleur.nbrePC }}</span>
+        </dd>
+        <dt><span>Agent</span></dt>
+        <dd>
+          <div *ngIf="bailleur.agent">
+            <a [routerLink]="['/agent', bailleur.agent?.id, 'view']">{{ bailleur.agent?.matricule }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/bailleur', bailleur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

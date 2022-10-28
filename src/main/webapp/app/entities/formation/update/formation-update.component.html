@@ -1,0 +1,278 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-formation-heading" data-cy="FormationCreateUpdateHeading">Create or edit a Formation</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomFormation">Nom Formation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomFormation"
+            id="field_nomFormation"
+            data-cy="nomFormation"
+            formControlName="nomFormation"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_typeFormation">Type Formation</label>
+          <select
+            class="form-control"
+            name="typeFormation"
+            formControlName="typeFormation"
+            id="field_typeFormation"
+            data-cy="typeFormation"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let typeFormation of typeFormationValues" [value]="typeFormation">typeFormation</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_duree">Duree</label>
+          <input type="text" class="form-control" name="duree" id="field_duree" data-cy="duree" formControlName="duree" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_admission">Admission</label>
+          <select class="form-control" name="admission" formControlName="admission" id="field_admission" data-cy="admission">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let admission of admissionValues" [value]="admission">admission</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_diplomeRequis">Diplome Requis</label>
+          <select
+            class="form-control"
+            name="diplomeRequis"
+            formControlName="diplomeRequis"
+            id="field_diplomeRequis"
+            data-cy="diplomeRequis"
+          >
+            <option [ngValue]="null"></option>
+            <option *ngFor="let diplomeRequis of diplomeRequisValues" [value]="diplomeRequis">diplomeRequis</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autreDiplome">Autre Diplome</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreDiplome"
+            id="field_autreDiplome"
+            data-cy="autreDiplome"
+            formControlName="autreDiplome"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_secteur">Secteur</label>
+          <select class="form-control" name="secteur" formControlName="secteur" id="field_secteur" data-cy="secteur">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let secteur of secteurValues" [value]="secteur">secteur</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_autreSecteur">Autre Secteur</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreSecteur"
+            id="field_autreSecteur"
+            data-cy="autreSecteur"
+            formControlName="autreSecteur"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_ficheFormation">Fiche Formation</label>
+          <div>
+            <div *ngIf="editForm.get('ficheFormation')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('ficheFormation')!.value, editForm.get('ficheFormationContentType')!.value)"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('ficheFormationContentType')!.value }}, {{ byteSize(editForm.get('ficheFormation')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ ficheFormation: null }); editForm.patchValue({ ficheFormationContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input type="file" id="file_ficheFormation" data-cy="ficheFormation" (change)="setFileData($event, 'ficheFormation', false)" />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="ficheFormation"
+            id="field_ficheFormation"
+            data-cy="ficheFormation"
+            formControlName="ficheFormation"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="ficheFormationContentType"
+            id="field_ficheFormationContentType"
+            formControlName="ficheFormationContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_programmes">Programmes</label>
+          <textarea
+            class="form-control"
+            name="programmes"
+            id="field_programmes"
+            data-cy="programmes"
+            formControlName="programmes"
+          ></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomConcours">Nom Concours</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomConcours"
+            id="field_nomConcours"
+            data-cy="nomConcours"
+            formControlName="nomConcours"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateOuverture">Date Ouverture</label>
+          <div class="input-group">
+            <input
+              id="field_dateOuverture"
+              data-cy="dateOuverture"
+              type="text"
+              class="form-control"
+              name="dateOuverture"
+              ngbDatepicker
+              #dateOuvertureDp="ngbDatepicker"
+              formControlName="dateOuverture"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateOuvertureDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateCloture">Date Cloture</label>
+          <div class="input-group">
+            <input
+              id="field_dateCloture"
+              data-cy="dateCloture"
+              type="text"
+              class="form-control"
+              name="dateCloture"
+              ngbDatepicker
+              #dateClotureDp="ngbDatepicker"
+              formControlName="dateCloture"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateClotureDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_dateConcours">Date Concours</label>
+          <div class="input-group">
+            <input
+              id="field_dateConcours"
+              data-cy="dateConcours"
+              type="text"
+              class="form-control"
+              name="dateConcours"
+              ngbDatepicker
+              #dateConcoursDp="ngbDatepicker"
+              formControlName="dateConcours"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateConcoursDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_libellePC">Libelle PC</label>
+          <input type="text" class="form-control" name="libellePC" id="field_libellePC" data-cy="libellePC" formControlName="libellePC" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_montantPriseEnCharge">Montant Prise En Charge</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montantPriseEnCharge"
+            id="field_montantPriseEnCharge"
+            data-cy="montantPriseEnCharge"
+            formControlName="montantPriseEnCharge"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_detailPC">Detail PC</label>
+          <textarea class="form-control" name="detailPC" id="field_detailPC" data-cy="detailPC" formControlName="detailPC"></textarea>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomDiplome">Nom Diplome</label>
+          <select class="form-control" name="nomDiplome" formControlName="nomDiplome" id="field_nomDiplome" data-cy="nomDiplome">
+            <option [ngValue]="null"></option>
+            <option *ngFor="let nomDiplome of nomDiplomeValues" [value]="nomDiplome">nomDiplome</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" for="field_nomDebouche">Nom Debouche</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomDebouche"
+            id="field_nomDebouche"
+            data-cy="nomDebouche"
+            formControlName="nomDebouche"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
