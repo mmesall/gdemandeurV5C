@@ -1,8 +1,10 @@
 package com.mycompany.myapp.service.impl;
 
 import com.mycompany.myapp.domain.Dossier;
+import com.mycompany.myapp.domain.enumeration.NomRegion;
 import com.mycompany.myapp.repository.DossierRepository;
 import com.mycompany.myapp.service.DossierService;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,9 +31,57 @@ public class DossierServiceImpl implements DossierService {
         this.dossierRepository = dossierRepository;
     }
 
+    // @Override
+    // public Dossier save(Dossier dossier) {
+    //     log.debug("Request to save Dossier : {}", dossier);
+    //     return dossierRepository.save(dossier);
+    // }
+
     @Override
     public Dossier save(Dossier dossier) {
-        log.debug("Request to save Dossier : {}", dossier);
+        // log.debug("Request to save Dossier : {}", dossier);
+        String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        String date = String.valueOf(System.currentTimeMillis());
+
+        // String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // Random rnd = new Random();
+        // char letter = alphabet.charAt(rnd.nextInt(alphabet.length()));
+
+        String region = "DK";
+        if (dossier.getRegion().equals(NomRegion.THIES)) {
+            region = "TH";
+        } else if (dossier.getRegion().equals(NomRegion.DIOURBEL)) {
+            region = "DB";
+        } else if (dossier.getRegion().equals(NomRegion.FATICK)) {
+            region = "FA";
+        } else if (dossier.getRegion().equals(NomRegion.KAOLACK)) {
+            region = "KL";
+        } else if (dossier.getRegion().equals(NomRegion.KAFFRINE)) {
+            region = "KF";
+        } else if (dossier.getRegion().equals(NomRegion.KEDOUGOU)) {
+            region = "KD";
+        } else if (dossier.getRegion().equals(NomRegion.KOLDA)) {
+            region = "KA";
+        } else if (dossier.getRegion().equals(NomRegion.LOUGA)) {
+            region = "LG";
+        } else if (dossier.getRegion().equals(NomRegion.MATAM)) {
+            region = "MA";
+        } else if (dossier.getRegion().equals(NomRegion.SAINT_LOUIS)) {
+            region = "SL";
+        } else if (dossier.getRegion().equals(NomRegion.SEDHIOU)) {
+            region = "SD";
+        } else if (dossier.getRegion().equals(NomRegion.TAMBACOUNDA)) {
+            region = "TA";
+        } else if (dossier.getRegion().equals(NomRegion.ZIGINCHOR)) {
+            region = "ZG";
+        } else {
+            region = "DK";
+        }
+        String numDoss = year.substring(year.length() - 2).concat(date.substring(date.length() - 4)).concat(region);
+
+        // .concat(String.valueOf(letter));
+
+        dossier.setNumDossier(numDoss);
         return dossierRepository.save(dossier);
     }
 
