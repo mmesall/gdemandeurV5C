@@ -1,21 +1,22 @@
 <div>
-  <h2 id="page-heading" data-cy="EtablissementHeading">
-    <span>Etablissements</span>
+  <h2 id="page-heading" data-cy="EtablissementHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Etablissements de formation professionnelles et techniques</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-etablissement"
         [routerLink]="['/etablissement/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Etablissement </span>
+        <span> Creer un nouveau etablissement</span>
       </button>
     </div>
   </h2>
@@ -25,31 +26,31 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="etablissements?.length === 0">
-    <span>No etablissements found</span>
+    <span>Aucun etablissement trouvé</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="etablissements && etablissements.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nomEtablissement"><span>Nom Etablissement</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="photo"><span>Photo</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="photo"><span>Photo</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="adresse"><span>Adresse</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="telephone"><span>Telephone</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="typeEtablissement"><span>Type Etablissement</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="localite.region"><span>Localite</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="typeEtablissement"><span>Type Etablissement</span> <fa-icon icon="sort"></fa-icon></th> -->
+          <!-- <th scope="col" jhiSortBy="localite.region"><span>Localite</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let etablissement of etablissements; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a [routerLink]="['/etablissement', etablissement.id, 'view']">{{ etablissement.id }}</a>
           </td>
           <td>{{ etablissement.nomEtablissement }}</td>
-          <td>
+          <!-- <td>
             <a *ngIf="etablissement.photo" (click)="openFile(etablissement.photo, etablissement.photoContentType)">
               <img
                 [src]="'data:' + etablissement.photoContentType + ';base64,' + etablissement.photo"
@@ -58,16 +59,16 @@
               />
             </a>
             <span *ngIf="etablissement.photo">{{ etablissement.photoContentType }}, {{ byteSize(etablissement.photo) }}</span>
-          </td>
+          </td> -->
           <td>{{ etablissement.adresse }}</td>
           <td>{{ etablissement.email }}</td>
           <td>{{ etablissement.telephone }}</td>
-          <td>{{ etablissement.typeEtablissement }}</td>
-          <td>
+          <!-- <td>{{ etablissement.typeEtablissement }}</td> -->
+          <!-- <td>
             <div *ngIf="etablissement.localite">
               <a [routerLink]="['/localite', etablissement.localite?.id, 'view']">{{ etablissement.localite?.region }}</a>
             </div>
-          </td>
+          </td> -->
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -77,22 +78,29 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/etablissement', etablissement.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(etablissement)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(etablissement)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
