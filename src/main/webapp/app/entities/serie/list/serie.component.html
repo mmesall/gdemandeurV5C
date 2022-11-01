@@ -1,21 +1,22 @@
 <div>
-  <h2 id="page-heading" data-cy="SerieHeading">
-    <span>Series</span>
+  <h2 id="page-heading" data-cy="SerieHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Series de formation professionnelle</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-serie"
         [routerLink]="['/serie/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Serie </span>
+        <span> Creer une nouvelle Serie </span>
       </button>
     </div>
   </h2>
@@ -25,31 +26,31 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="series?.length === 0">
-    <span>No series found</span>
+    <span>Aucune serie trouvée</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="series && series.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="nomSerie"><span>Nom Serie</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="niveauEtude"><span>Niveau Etude</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="programme"><span>Programme</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="autreSerie"><span>Autre Serie</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="autreSerie"><span>Autre Serie</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="etablissement.nomEtablissement"><span>Etablissement</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let serie of series; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!-- <td>
             <a [routerLink]="['/serie', serie.id, 'view']">{{ serie.id }}</a>
-          </td>
+          </td> -->
           <td>{{ serie.nomSerie }}</td>
           <td>{{ serie.niveauEtude }}</td>
           <td>{{ serie.programme }}</td>
-          <td>{{ serie.autreSerie }}</td>
+          <!-- <td>{{ serie.autreSerie }}</td> -->
           <td>
             <div *ngIf="serie.etablissement">
               <a [routerLink]="['/etablissement', serie.etablissement?.id, 'view']">{{ serie.etablissement?.nomEtablissement }}</a>
@@ -59,17 +60,29 @@
             <div class="btn-group">
               <button type="submit" [routerLink]="['/serie', serie.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
-              <button type="submit" [routerLink]="['/serie', serie.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                [routerLink]="['/serie', serie.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(serie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(serie)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
