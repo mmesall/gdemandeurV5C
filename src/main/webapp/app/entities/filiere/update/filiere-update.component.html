@@ -1,15 +1,15 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-filiere-heading" data-cy="FiliereCreateUpdateHeading">Create or edit a Filiere</h2>
+      <h2 id="jhi-filiere-heading" data-cy="FiliereCreateUpdateHeading">Creer une nouvelle Filiere</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+        <!-- <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
           <label class="form-label" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
+        </div> -->
 
         <div class="row mb-3">
           <label class="form-label" for="field_nomFiliere">Nom Filiere</label>
@@ -32,7 +32,7 @@
           <textarea class="form-control" name="programme" id="field_programme" data-cy="programme" formControlName="programme"></textarea>
         </div>
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
           <label class="form-label" for="field_autreNiveauEtude">Autre Niveau Etude</label>
           <input
             type="text"
@@ -42,9 +42,9 @@
             data-cy="autreNiveauEtude"
             formControlName="autreNiveauEtude"
           />
-        </div>
+        </div> -->
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
           <label class="form-label" for="field_autreFiliere">Autre Filiere</label>
           <input
             type="text"
@@ -54,7 +54,7 @@
             data-cy="autreFiliere"
             formControlName="autreFiliere"
           />
-        </div>
+        </div> -->
 
         <div class="row mb-3">
           <label class="form-label" for="field_etablissement">Etablissement</label>
@@ -82,7 +82,7 @@
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
         </button>
 
         <button
@@ -92,7 +92,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
         </button>
       </div>
     </form>

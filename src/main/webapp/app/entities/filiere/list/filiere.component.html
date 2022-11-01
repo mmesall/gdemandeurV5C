@@ -1,12 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="FiliereHeading">
-    <span>Filieres</span>
+  <h2 id="page-heading" data-cy="FiliereHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Filieres de formation professionnelle</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
         id="jh-create-entity"
@@ -15,7 +15,7 @@
         [routerLink]="['/filiere/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Filiere </span>
+        <span> Creer une nouvelle Filiere </span>
       </button>
     </div>
   </h2>
@@ -25,33 +25,33 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="filieres?.length === 0">
-    <span>No filieres found</span>
+    <span>Aucune filiere trouvee</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="filieres && filieres.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="nomFiliere"><span>Nom Filiere</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="niveauEtude"><span>Niveau Etude</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="programme"><span>Programme</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="autreNiveauEtude"><span>Autre Niveau Etude</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="autreFiliere"><span>Autre Filiere</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="autreNiveauEtude"><span>Autre Niveau Etude</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="autreFiliere"><span>Autre Filiere</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="etablissement.nomEtablissement"><span>Etablissement</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let filiere of filieres; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!-- <td>
             <a [routerLink]="['/filiere', filiere.id, 'view']">{{ filiere.id }}</a>
-          </td>
+          </td> -->
           <td>{{ filiere.nomFiliere }}</td>
           <td>{{ filiere.niveauEtude }}</td>
           <td>{{ filiere.programme }}</td>
-          <td>{{ filiere.autreNiveauEtude }}</td>
-          <td>{{ filiere.autreFiliere }}</td>
+          <!-- <td>{{ filiere.autreNiveauEtude }}</td>
+          <td>{{ filiere.autreFiliere }}</td> -->
           <td>
             <div *ngIf="filiere.etablissement">
               <a [routerLink]="['/etablissement', filiere.etablissement?.id, 'view']">{{ filiere.etablissement?.nomEtablissement }}</a>
@@ -66,22 +66,29 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/filiere', filiere.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(filiere)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(filiere)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
