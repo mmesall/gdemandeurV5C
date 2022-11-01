@@ -1,21 +1,22 @@
 <div>
-  <h2 id="page-heading" data-cy="PriseEnChargeHeading">
-    <span>Prise En Charges</span>
+  <h2 id="page-heading" data-cy="PriseEnChargeHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Bons de formation</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-prise-en-charge"
         [routerLink]="['/prise-en-charge/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Prise En Charge </span>
+        <span> Creer un bon </span>
       </button>
     </div>
   </h2>
@@ -25,14 +26,14 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="priseEnCharges?.length === 0">
-    <span>No priseEnCharges found</span>
+    <span>Aucun bon de formation trouvé</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="priseEnCharges && priseEnCharges.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="libelle"><span>Libelle</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="montant"><span>Montant</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nbrePC"><span>Nbre PC</span> <fa-icon icon="sort"></fa-icon></th>
@@ -44,9 +45,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let priseEnCharge of priseEnCharges; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!-- <td>
             <a [routerLink]="['/prise-en-charge', priseEnCharge.id, 'view']">{{ priseEnCharge.id }}</a>
-          </td>
+          </td> -->
           <td>{{ priseEnCharge.libelle }}</td>
           <td>{{ priseEnCharge.montant }}</td>
           <td>{{ priseEnCharge.nbrePC }}</td>
@@ -70,22 +71,29 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/prise-en-charge', priseEnCharge.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(priseEnCharge)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(priseEnCharge)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>

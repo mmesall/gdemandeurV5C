@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="priseEnCharge">
-      <h2 data-cy="priseEnChargeDetailsHeading"><span>Prise En Charge</span></h2>
+      <h2 data-cy="priseEnChargeDetailsHeading"><span>Details de ce bon de formation</span></h2>
 
       <hr />
 
@@ -10,10 +10,10 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span>ID</span></dt>
+        <!-- <dt><span>ID</span></dt>
         <dd>
           <span>{{ priseEnCharge.id }}</span>
-        </dd>
+        </dd> -->
         <dt><span>Libelle</span></dt>
         <dd>
           <span>{{ priseEnCharge.libelle }}</span>
@@ -45,11 +45,16 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
       </button>
 
-      <button type="button" [routerLink]="['/prise-en-charge', priseEnCharge.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        type="button"
+        [routerLink]="['/prise-en-charge', priseEnCharge.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
       </button>
     </div>
   </div>
