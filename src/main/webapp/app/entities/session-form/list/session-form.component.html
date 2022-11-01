@@ -1,12 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="SessionFormHeading">
-    <span>Session Forms</span>
+  <h2 id="page-heading" data-cy="SessionFormHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Sessions de formation </span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
         id="jh-create-entity"
@@ -15,7 +15,7 @@
         [routerLink]="['/session-form/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Session Form </span>
+        <span> Creer une nouvelle session de formation </span>
       </button>
     </div>
   </h2>
@@ -25,14 +25,14 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="sessionForms?.length === 0">
-    <span>No sessionForms found</span>
+    <span>Aucune session de formation trouvée</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="sessionForms && sessionForms.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="nomSession"><span>Nom Session</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="annee"><span>Annee</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dateDebutSess"><span>Date Debut Sess</span> <fa-icon icon="sort"></fa-icon></th>
@@ -44,9 +44,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let sessionForm of sessionForms; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!-- <td>
             <a [routerLink]="['/session-form', sessionForm.id, 'view']">{{ sessionForm.id }}</a>
-          </td>
+          </td> -->
           <td>{{ sessionForm.nomSession }}</td>
           <td>{{ sessionForm.annee }}</td>
           <td>{{ sessionForm.dateDebutSess | formatMediumDate }}</td>
@@ -72,22 +72,29 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/session-form', sessionForm.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(sessionForm)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(sessionForm)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>

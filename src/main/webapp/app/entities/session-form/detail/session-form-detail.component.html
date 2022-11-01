@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="sessionForm">
-      <h2 data-cy="sessionFormDetailsHeading"><span>Session Form</span></h2>
+      <h2 data-cy="sessionFormDetailsHeading"><span>Details de la Session de Formation</span></h2>
 
       <hr />
 
@@ -47,11 +47,16 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
       </button>
 
-      <button type="button" [routerLink]="['/session-form', sessionForm.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        type="button"
+        [routerLink]="['/session-form', sessionForm.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
       </button>
     </div>
   </div>
