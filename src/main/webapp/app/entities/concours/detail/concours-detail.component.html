@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="concours">
-      <h2 data-cy="concoursDetailsHeading"><span>Concours</span></h2>
+      <h2 data-cy="concoursDetailsHeading"><span>Details sur ce Concours</span></h2>
 
       <hr />
 
@@ -10,8 +10,8 @@
       <jhi-alert></jhi-alert>
 
       <dl class="row-md jh-entity-details">
-        <dt><span>ID</span></dt>
-        <dd>
+        <dt *jhiHasAnyAuthority="'ROLE_ADMIN'"><span>ID</span></dt>
+        <dd *jhiHasAnyAuthority="'ROLE_ADMIN'">
           <span>{{ concours.id }}</span>
         </dd>
         <dt><span>Nom Concours</span></dt>
@@ -39,11 +39,11 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
       </button>
 
-      <button type="button" [routerLink]="['/concours', concours.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button" [routerLink]="['/concours', concours.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
       </button>
     </div>
   </div>

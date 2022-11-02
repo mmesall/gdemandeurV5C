@@ -1,21 +1,22 @@
 <div>
-  <h2 id="page-heading" data-cy="ConcoursHeading">
-    <span>Concours</span>
+  <h2 id="page-heading" data-cy="ConcoursHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Concours de formations professionnelles et techniques</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-concours"
         [routerLink]="['/concours/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Concours </span>
+        <span> Creer un nouveau Concours </span>
       </button>
     </div>
   </h2>
@@ -25,14 +26,14 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="concours?.length === 0">
-    <span>No concours found</span>
+    <span>Aucun concours trouvé</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="concours && concours.length > 0">
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="nomConcours"><span>Nom Concours</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dateOuverture"><span>Date Ouverture</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dateCloture"><span>Date Cloture</span> <fa-icon icon="sort"></fa-icon></th>
@@ -43,9 +44,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let concours of concours; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!-- <td>
             <a [routerLink]="['/concours', concours.id, 'view']">{{ concours.id }}</a>
-          </td>
+          </td> -->
           <td>{{ concours.nomConcours }}</td>
           <td>{{ concours.dateOuverture | formatMediumDate }}</td>
           <td>{{ concours.dateCloture | formatMediumDate }}</td>
@@ -64,22 +65,29 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
                 type="submit"
                 [routerLink]="['/concours', concours.id, 'edit']"
                 class="btn btn-primary btn-sm"
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(concours)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(concours)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
