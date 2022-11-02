@@ -6,35 +6,52 @@
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
           <label class="form-label" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_region">Region</label>
           <select class="form-control" name="region" formControlName="region" id="field_region" data-cy="region">
             <option [ngValue]="null"></option>
-            <option *ngFor="let nomRegion of nomRegionValues" [value]="nomRegion">nomRegion</option>
+            <!-- <option value="DAKAR">DAKAR</option>
+            <option value="THIES">THIES</option>
+            <option value="FATICK">FATICK</option>
+            <option value="KAOLACK">KAOLACK</option>
+            <option value="DIOURBEL">DIOURBEL</option>
+            <option value="KAFFRINE">KAFFRINE</option>
+            <option value="KEDOUGOU">KEDOUGOU</option>
+            <option value="KOLDA">KOLDA</option>
+            <option value="LOUGA">LOUGA</option>
+            <option value="MATAM">MATAM</option>
+            <option value="SAINT_LOUIS">SAINT LOUIS</option>
+            <option value="SEDHIOU">SEDHIOU</option>
+            <option value="TAMBACOUNDA">TAMBACOUNDA</option>
+            <option value="ZIGINCHOR">ZIGUINCHOR</option>
+            <option value="AUTRE">Autre region</option> -->
+            <option *ngFor="let nomRegion of nomRegionValues" [value]="nomRegion">{{ nomRegion }}</option>
           </select>
           <div *ngIf="editForm.get('region')!.invalid && (editForm.get('region')!.dirty || editForm.get('region')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('region')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" *ngIf="editForm.get('region')?.errors?.required"> Ce champ est requis. </small>
           </div>
         </div>
 
-        <div class="row mb-3">
-          <label class="form-label" for="field_autreRegion">Autre Region</label>
-          <input
-            type="text"
-            class="form-control"
-            name="autreRegion"
-            id="field_autreRegion"
-            data-cy="autreRegion"
-            formControlName="autreRegion"
-          />
+        <div *ngIf="editForm.value.region === 'AUTRE'">
+          <div class="form-group">
+            <label class="form-label" for="field_autreRegion">Autre Region</label>
+            <input
+              type="text"
+              class="form-control"
+              name="autreRegion"
+              id="field_autreRegion"
+              data-cy="autreRegion"
+              formControlName="autreRegion"
+            />
+          </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementDakar">Departement Dakar</label>
           <select
             class="form-control"
@@ -48,7 +65,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementDiourbel">Departement Diourbel</label>
           <select
             class="form-control"
@@ -62,7 +79,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementFatick">Departement Fatick</label>
           <select
             class="form-control"
@@ -76,7 +93,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementKaffrine">Departement Kaffrine</label>
           <select
             class="form-control"
@@ -90,7 +107,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementKaolack">Departement Kaolack</label>
           <select
             class="form-control"
@@ -104,7 +121,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementKedougou">Departement Kedougou</label>
           <select
             class="form-control"
@@ -118,7 +135,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementKolda">Departement Kolda</label>
           <select
             class="form-control"
@@ -132,7 +149,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementLouga">Departement Louga</label>
           <select
             class="form-control"
@@ -146,7 +163,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementMatam">Departement Matam</label>
           <select
             class="form-control"
@@ -160,7 +177,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementSaint">Departement Saint</label>
           <select
             class="form-control"
@@ -174,7 +191,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementSedhiou">Departement Sedhiou</label>
           <select
             class="form-control"
@@ -188,7 +205,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementTambacounda">Departement Tambacounda</label>
           <select
             class="form-control"
@@ -202,7 +219,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementThis">Departement This</label>
           <select
             class="form-control"
@@ -216,7 +233,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_departementZiguinchor">Departement Ziguinchor</label>
           <select
             class="form-control"
@@ -230,7 +247,7 @@
           </select>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementDakar">Autredepartement Dakar</label>
           <input
             type="text"
@@ -242,7 +259,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementDiourbel">Autredepartement Diourbel</label>
           <input
             type="text"
@@ -254,7 +271,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementFatick">Autredepartement Fatick</label>
           <input
             type="text"
@@ -266,7 +283,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementKaffrine">Autredepartement Kaffrine</label>
           <input
             type="text"
@@ -278,7 +295,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementKaolack">Autredepartement Kaolack</label>
           <input
             type="text"
@@ -290,7 +307,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementKedougou">Autredepartement Kedougou</label>
           <input
             type="text"
@@ -302,7 +319,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementKolda">Autredepartement Kolda</label>
           <input
             type="text"
@@ -314,7 +331,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementLouga">Autredepartement Louga</label>
           <input
             type="text"
@@ -326,7 +343,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementMatam">Autredepartement Matam</label>
           <input
             type="text"
@@ -338,7 +355,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementSaint">Autredepartement Saint</label>
           <input
             type="text"
@@ -350,7 +367,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementSedhiou">Autredepartement Sedhiou</label>
           <input
             type="text"
@@ -362,7 +379,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementTambacounda">Autredepartement Tambacounda</label>
           <input
             type="text"
@@ -374,7 +391,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementThis">Autredepartement This</label>
           <input
             type="text"
@@ -386,7 +403,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_autredepartementZiguinchor">Autredepartement Ziguinchor</label>
           <input
             type="text"
@@ -398,7 +415,7 @@
           />
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_commune">Commune</label>
           <input type="text" class="form-control" name="commune" id="field_commune" data-cy="commune" formControlName="commune" />
           <div *ngIf="editForm.get('commune')!.invalid && (editForm.get('commune')!.dirty || editForm.get('commune')!.touched)">
@@ -406,7 +423,7 @@
           </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="form-group">
           <label class="form-label" for="field_nomQuartier">Nom Quartier</label>
           <input
             type="text"
@@ -421,7 +438,7 @@
 
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
-          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Annuler</span>
         </button>
 
         <button
@@ -431,7 +448,7 @@
           [disabled]="editForm.invalid || isSaving"
           class="btn btn-primary"
         >
-          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Sauvegarder</span>
         </button>
       </div>
     </form>
