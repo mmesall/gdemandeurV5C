@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="pieceJointe">
-      <h2 data-cy="pieceJointeDetailsHeading"><span>Piece Jointe</span></h2>
+      <h2 data-cy="pieceJointeDetailsHeading"><span>Details sur ce Piece Jointe</span></h2>
 
       <hr />
 
@@ -31,11 +31,11 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
       </button>
 
       <button type="button" [routerLink]="['/piece-jointe', pieceJointe.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
       </button>
     </div>
   </div>

@@ -1,12 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="EleveHeading">
-    <span>Eleves</span>
+  <h2 id="page-heading" data-cy="EleveHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Liste des eleves demandeurs de formation</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
         id="jh-create-entity"
@@ -15,7 +15,7 @@
         [routerLink]="['/eleve/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Eleve </span>
+        <span> Ajouter un nouveau Eleve </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="eleves?.length === 0">
-    <span>No eleves found</span>
+    <span>Aucun eleve trouvé</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="eleves && eleves.length > 0">
@@ -35,16 +35,16 @@
           <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nom"><span>Nom</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="prenom"><span>Prenom</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="dateNaiss"><span>Date Naiss</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateNaiss"><span>Date et lieu de Naissance</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="sexe"><span>Sexe</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="telephone"><span>Telephone</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="adressePhysique"><span>Adresse Physique</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="adressePhysique"><span>Adresse Physique</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="cni"><span>Cni</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="user.login"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dossier.numDossier"><span>Dossier</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="localite.region"><span>Localite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="localite.region"><span>Localite</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -55,11 +55,11 @@
           </td>
           <td>{{ eleve.nom }}</td>
           <td>{{ eleve.prenom }}</td>
-          <td>{{ eleve.dateNaiss | formatMediumDate }}</td>
-          <td>{{ eleve.lieuNaiss }}</td>
+          <td>{{ eleve.dateNaiss | formatMediumDate }} à {{ eleve.lieuNaiss }}</td>
+          <!-- <td>{{ eleve.lieuNaiss }}</td> -->
           <td>{{ eleve.sexe }}</td>
           <td>{{ eleve.telephone }}</td>
-          <td>{{ eleve.adressePhysique }}</td>
+          <!-- <td>{{ eleve.adressePhysique }}</td>
           <td>{{ eleve.email }}</td>
           <td>{{ eleve.cni }}</td>
           <td>
@@ -69,27 +69,27 @@
             <div *ngIf="eleve.dossier">
               <a [routerLink]="['/dossier', eleve.dossier?.id, 'view']">{{ eleve.dossier?.numDossier }}</a>
             </div>
-          </td>
-          <td>
+          </td> -->
+          <!-- <td>
             <div *ngIf="eleve.localite">
               <a [routerLink]="['/localite', eleve.localite?.id, 'view']">{{ eleve.localite?.region }}</a>
             </div>
-          </td>
+          </td> -->
           <td class="text-end">
             <div class="btn-group">
               <button type="submit" [routerLink]="['/eleve', eleve.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button type="submit" [routerLink]="['/eleve', eleve.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
               <button type="submit" (click)="delete(eleve)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
