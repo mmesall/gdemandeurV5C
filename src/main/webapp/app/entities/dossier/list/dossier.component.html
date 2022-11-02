@@ -1,12 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="DossierHeading">
-    <span>Dossiers</span>
+  <h2 id="page-heading" data-cy="DossierHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Dossiers de candidature</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
         id="jh-create-entity"
@@ -15,7 +15,7 @@
         [routerLink]="['/dossier/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Dossier </span>
+        <span> Creer un nouveau Dossier </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="dossiers?.length === 0">
-    <span>No dossiers found</span>
+    <span>Aucun dossier trouvé</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="dossiers && dossiers.length > 0">
@@ -41,13 +41,13 @@
           <th scope="col" jhiSortBy="region"><span>Region</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="telephone"><span>Telephone</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="photo"><span>Photo</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="photo"><span>Photo</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="cv"><span>Cv</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="lettreMotivation"><span>Lettre Motivation</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="diplomeRequis"><span>Diplome Requis</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="niveauEtude"><span>Niveau Etude</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="profession"><span>Profession</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="user.login"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="user.login"><span>User</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -64,7 +64,7 @@
           <td>{{ dossier.region }}</td>
           <td>{{ dossier.telephone }}</td>
           <td>{{ dossier.email }}</td>
-          <td>
+          <!-- <td>
             <a *ngIf="dossier.photo" (click)="openFile(dossier.photo, dossier.photoContentType)">
               <img [src]="'data:' + dossier.photoContentType + ';base64,' + dossier.photo" style="max-height: 30px" alt="dossier image" />
             </a>
@@ -77,10 +77,10 @@
           <td>{{ dossier.lettreMotivation }}</td>
           <td>{{ dossier.diplomeRequis }}</td>
           <td>{{ dossier.niveauEtude }}</td>
-          <td>{{ dossier.profession }}</td>
-          <td>
+          <td>{{ dossier.profession }}</td> -->
+          <!-- <td>
             {{ dossier.user?.login }}
-          </td>
+          </td> -->
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -90,7 +90,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
@@ -100,12 +100,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
               <button type="submit" (click)="delete(dossier)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
