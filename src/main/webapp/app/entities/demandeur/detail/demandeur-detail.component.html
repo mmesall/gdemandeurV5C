@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <div *ngIf="demandeur">
-      <h2 data-cy="demandeurDetailsHeading"><span>Demandeur</span></h2>
+      <h2 data-cy="demandeurDetailsHeading"><span>Details sur ce Demandeur</span></h2>
 
       <hr />
 
@@ -77,11 +77,11 @@
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
-        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Retour</span>
       </button>
 
       <button type="button" [routerLink]="['/demandeur', demandeur.id, 'edit']" class="btn btn-primary">
-        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Editer</span>
       </button>
     </div>
   </div>

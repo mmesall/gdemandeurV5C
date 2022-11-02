@@ -1,14 +1,40 @@
 <div>
-  <h2 id="page-heading" data-cy="DemandeurHeading">
-    <span>Demandeurs</span>
+  <h2 id="page-heading" data-cy="DemandeurHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Liste des demandeurs de formation</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
+      </button> -->
+
+      <button class="btn btn-info me-2" routerLink="/eleve">
+        <!-- <fa-icon icon="sync" [spin]="isLoading"></fa-icon> -->
+        <span>Liste des Eleves</span>
+      </button>
+
+      <button class="btn btn-info me-2" routerLink="/etudiant">
+        <!-- <fa-icon icon="sync" [spin]="isLoading"></fa-icon> -->
+        <span>Liste des Etudiants</span>
+      </button>
+
+      <button class="btn btn-info me-2" routerLink="/professionnel">
+        <!-- <fa-icon icon="sync" [spin]="isLoading"></fa-icon> -->
+        <span>Liste des Professionnels</span>
       </button>
 
       <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-demandeur"
+        [routerLink]="['/demandeur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Creer un nouveau demandeur </span>
+      </button>
+
+      <!-- <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-demandeur"
@@ -16,7 +42,7 @@
       >
         <fa-icon icon="plus"></fa-icon>
         <span> Create a new Demandeur </span>
-      </button>
+      </button> -->
     </div>
   </h2>
 
@@ -35,17 +61,17 @@
           <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nom"><span>Nom</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="prenom"><span>Prenom</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="dateNaiss"><span>Date Naiss</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateNaiss"><span>Date et lieu de Naissance</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="sexe"><span>Sexe</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="telephone"><span>Telephone</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="profil"><span>Profil</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="dossier.numDossier"><span>Dossier</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="dossier.numDossier"><span>Dossier</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="user.login"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="eleve.cni"><span>Eleve</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="etudiant.cni"><span>Etudiant</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="professionnel.cni"><span>Professionnel</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="professionnel.cni"><span>Professionnel</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -56,21 +82,21 @@
           </td>
           <td>{{ demandeur.nom }}</td>
           <td>{{ demandeur.prenom }}</td>
-          <td>{{ demandeur.dateNaiss | formatMediumDate }}</td>
-          <td>{{ demandeur.lieuNaiss }}</td>
+          <td>{{ demandeur.dateNaiss | formatMediumDate }} à {{ demandeur.lieuNaiss }}</td>
+          <!-- <td>{{ demandeur.lieuNaiss }}</td> -->
           <td>{{ demandeur.sexe }}</td>
           <td>{{ demandeur.telephone }}</td>
           <td>{{ demandeur.email }}</td>
           <td>{{ demandeur.profil }}</td>
-          <td>
+          <!-- <td>
             <div *ngIf="demandeur.dossier">
               <a [routerLink]="['/dossier', demandeur.dossier?.id, 'view']">{{ demandeur.dossier?.numDossier }}</a>
             </div>
           </td>
           <td>
             {{ demandeur.user?.login }}
-          </td>
-          <td>
+          </td> -->
+          <!-- <td>
             <div *ngIf="demandeur.eleve">
               <a [routerLink]="['/eleve', demandeur.eleve?.id, 'view']">{{ demandeur.eleve?.cni }}</a>
             </div>
@@ -84,7 +110,7 @@
             <div *ngIf="demandeur.professionnel">
               <a [routerLink]="['/professionnel', demandeur.professionnel?.id, 'view']">{{ demandeur.professionnel?.cni }}</a>
             </div>
-          </td>
+          </td> -->
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -94,7 +120,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
@@ -104,12 +130,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
               <button type="submit" (click)="delete(demandeur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
