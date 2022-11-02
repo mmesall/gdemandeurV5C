@@ -1,12 +1,12 @@
 <div>
-  <h2 id="page-heading" data-cy="EtudiantHeading">
-    <span>Etudiants</span>
+  <h2 id="page-heading" data-cy="EtudiantHeading" style="text-align: center; font-style: italic; font-weight: bold">
+    <span>Liste des etudiants demandeurs de formation</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
         id="jh-create-entity"
@@ -15,7 +15,7 @@
         [routerLink]="['/etudiant/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Etudiant </span>
+        <span> Ajouter un nouveau Etudiant </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="etudiants?.length === 0">
-    <span>No etudiants found</span>
+    <span>Aucun etudiant trouvé</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="etudiants && etudiants.length > 0">
@@ -35,16 +35,16 @@
           <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nom"><span>Nom</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="prenom"><span>Prenom</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="dateNaiss"><span>Date Naiss</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dateNaiss"><span>Date et lieu de Naissance</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="lieuNaiss"><span>Lieu Naiss</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="sexe"><span>Sexe</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="telephone"><span>Telephone</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="adressePhysique"><span>Adresse Physique</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="adressePhysique"><span>Adresse Physique</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="email"><span>Email</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="cni"><span>Cni</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="user.login"><span>User</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dossier.numDossier"><span>Dossier</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="localite.region"><span>Localite</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="localite.region"><span>Localite</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col"></th>
         </tr>
       </thead>
@@ -55,11 +55,11 @@
           </td>
           <td>{{ etudiant.nom }}</td>
           <td>{{ etudiant.prenom }}</td>
-          <td>{{ etudiant.dateNaiss | formatMediumDate }}</td>
-          <td>{{ etudiant.lieuNaiss }}</td>
+          <td>{{ etudiant.dateNaiss | formatMediumDate }} à {{ etudiant.lieuNaiss }}</td>
+          <!-- <td>{{ etudiant.lieuNaiss }}</td> -->
           <td>{{ etudiant.sexe }}</td>
           <td>{{ etudiant.telephone }}</td>
-          <td>{{ etudiant.adressePhysique }}</td>
+          <!-- <td>{{ etudiant.adressePhysique }}</td>
           <td>{{ etudiant.email }}</td>
           <td>{{ etudiant.cni }}</td>
           <td>
@@ -69,12 +69,12 @@
             <div *ngIf="etudiant.dossier">
               <a [routerLink]="['/dossier', etudiant.dossier?.id, 'view']">{{ etudiant.dossier?.numDossier }}</a>
             </div>
-          </td>
-          <td>
+          </td> -->
+          <!-- <td>
             <div *ngIf="etudiant.localite">
               <a [routerLink]="['/localite', etudiant.localite?.id, 'view']">{{ etudiant.localite?.region }}</a>
             </div>
-          </td>
+          </td> -->
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -84,7 +84,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
@@ -94,12 +94,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
               <button type="submit" (click)="delete(etudiant)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>
