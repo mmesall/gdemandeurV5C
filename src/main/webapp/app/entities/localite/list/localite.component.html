@@ -3,10 +3,10 @@
     <span>Localites</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+      <!-- <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span>Refresh List</span>
-      </button>
+      </button> -->
 
       <button
         id="jh-create-entity"
@@ -15,7 +15,7 @@
         [routerLink]="['/localite/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span> Create a new Localite </span>
+        <span> Creer une nouvelle Localite </span>
       </button>
     </div>
   </h2>
@@ -25,7 +25,7 @@
   <jhi-alert></jhi-alert>
 
   <div class="alert alert-warning" id="no-result" *ngIf="localites?.length === 0">
-    <span>No localites found</span>
+    <span>Aucune localite trouvé</span>
   </div>
 
   <div class="table-responsive" id="entities" *ngIf="localites && localites.length > 0">
@@ -36,7 +36,7 @@
           <th scope="col" jhiSortBy="region"><span>Region</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="autreRegion"><span>Autre Region</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="departementDakar"><span>Departement Dakar</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="departementDiourbel"><span>Departement Diourbel</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="departementDiourbel"><span>Departement Diourbel</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="departementFatick"><span>Departement Fatick</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="departementKaffrine"><span>Departement Kaffrine</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="departementKaolack"><span>Departement Kaolack</span> <fa-icon icon="sort"></fa-icon></th>
@@ -59,14 +59,14 @@
           <th scope="col" jhiSortBy="autredepartementLouga"><span>Autredepartement Louga</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="autredepartementMatam"><span>Autredepartement Matam</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="autredepartementSaint"><span>Autredepartement Saint</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="autredepartementSedhiou"><span>Autredepartement Sedhiou</span> <fa-icon icon="sort"></fa-icon></th>
-          <th scope="col" jhiSortBy="autredepartementTambacounda">
+          <th scope="col" jhiSortBy="autredepartementSedhiou"><span>Autredepartement Sedhiou</span> <fa-icon icon="sort"></fa-icon></th> -->
+          <!-- <th scope="col" jhiSortBy="autredepartementTambacounda">
             <span>Autredepartement Tambacounda</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col" jhiSortBy="autredepartementThis"><span>Autredepartement This</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="autredepartementZiguinchor">
             <span>Autredepartement Ziguinchor</span> <fa-icon icon="sort"></fa-icon>
-          </th>
+          </th> -->
           <th scope="col" jhiSortBy="commune"><span>Commune</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nomQuartier"><span>Nom Quartier</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col"></th>
@@ -80,7 +80,7 @@
           <td>{{ localite.region }}</td>
           <td>{{ localite.autreRegion }}</td>
           <td>{{ localite.departementDakar }}</td>
-          <td>{{ localite.departementDiourbel }}</td>
+          <!-- <td>{{ localite.departementDiourbel }}</td>
           <td>{{ localite.departementFatick }}</td>
           <td>{{ localite.departementKaffrine }}</td>
           <td>{{ localite.departementKaolack }}</td>
@@ -91,8 +91,8 @@
           <td>{{ localite.departementSaint }}</td>
           <td>{{ localite.departementSedhiou }}</td>
           <td>{{ localite.departementTambacounda }}</td>
-          <td>{{ localite.departementThis }}</td>
-          <td>{{ localite.departementZiguinchor }}</td>
+          <td>{{ localite.departementThis }}</td> -->
+          <!-- <td>{{ localite.departementZiguinchor }}</td>
           <td>{{ localite.autredepartementDakar }}</td>
           <td>{{ localite.autredepartementDiourbel }}</td>
           <td>{{ localite.autredepartementFatick }}</td>
@@ -106,7 +106,7 @@
           <td>{{ localite.autredepartementSedhiou }}</td>
           <td>{{ localite.autredepartementTambacounda }}</td>
           <td>{{ localite.autredepartementThis }}</td>
-          <td>{{ localite.autredepartementZiguinchor }}</td>
+          <td>{{ localite.autredepartementZiguinchor }}</td> -->
           <td>{{ localite.commune }}</td>
           <td>{{ localite.nomQuartier }}</td>
           <td class="text-end">
@@ -118,7 +118,7 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline">View</span>
+                <span class="d-none d-md-inline">Voir</span>
               </button>
 
               <button
@@ -128,12 +128,12 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline">Edit</span>
+                <span class="d-none d-md-inline">Editer</span>
               </button>
 
               <button type="submit" (click)="delete(localite)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline">Delete</span>
+                <span class="d-none d-md-inline">Supprimer</span>
               </button>
             </div>
           </td>

@@ -16,5 +16,6 @@ public enum Secteur {
     GESTION_DE_LA_FAUNE_ET_DE_LA_FLORE,
     GENIE_RURAL,
     ARTISANAT,
+    RESTAURATION,
     Autres,
 }

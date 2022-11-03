@@ -23,5 +23,7 @@ export enum Secteur {
 
   ARTISANAT = 'ARTISANAT',
 
+  RESTAURATION = 'RESTAURATION',
+
   Autres = 'Autres',
 }

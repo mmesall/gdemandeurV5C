@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-localite-heading" data-cy="LocaliteCreateUpdateHeading">Create or edit a Localite</h2>
+      <h2 id="jhi-localite-heading" data-cy="LocaliteCreateUpdateHeading">Creer une Localite</h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -61,7 +61,7 @@
             data-cy="departementDakar"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let dAKAR of dAKARValues" [value]="dAKAR">dAKAR</option>
+            <option *ngFor="let dAKAR of dAKARValues" [value]="dAKAR">{{ dAKAR }}</option>
           </select>
         </div>
 
@@ -75,7 +75,7 @@
             data-cy="departementDiourbel"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let dIOURBEL of dIOURBELValues" [value]="dIOURBEL">dIOURBEL</option>
+            <option *ngFor="let dIOURBEL of dIOURBELValues" [value]="dIOURBEL">{{ dIOURBEL }}</option>
           </select>
         </div>
 
@@ -89,7 +89,7 @@
             data-cy="departementFatick"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let fATICK of fATICKValues" [value]="fATICK">fATICK</option>
+            <option *ngFor="let fATICK of fATICKValues" [value]="fATICK">{{ fATICK }}</option>
           </select>
         </div>
 
@@ -103,7 +103,7 @@
             data-cy="departementKaffrine"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let kAFFRINE of kAFFRINEValues" [value]="kAFFRINE">kAFFRINE</option>
+            <option *ngFor="let kAFFRINE of kAFFRINEValues" [value]="kAFFRINE">{{ kAFFRINE }}</option>
           </select>
         </div>
 
@@ -117,7 +117,7 @@
             data-cy="departementKaolack"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let kAOLACK of kAOLACKValues" [value]="kAOLACK">kAOLACK</option>
+            <option *ngFor="let kAOLACK of kAOLACKValues" [value]="kAOLACK">{{ kAOLACK }}</option>
           </select>
         </div>
 
@@ -131,7 +131,7 @@
             data-cy="departementKedougou"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let kEDOUGOU of kEDOUGOUValues" [value]="kEDOUGOU">kEDOUGOU</option>
+            <option *ngFor="let kEDOUGOU of kEDOUGOUValues" [value]="kEDOUGOU">{{ kEDOUGOU }}</option>
           </select>
         </div>
 
@@ -145,7 +145,7 @@
             data-cy="departementKolda"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let kOLDA of kOLDAValues" [value]="kOLDA">kOLDA</option>
+            <option *ngFor="let kOLDA of kOLDAValues" [value]="kOLDA">{{ kOLDA }}</option>
           </select>
         </div>
 
@@ -159,7 +159,7 @@
             data-cy="departementLouga"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let lOUGA of lOUGAValues" [value]="lOUGA">lOUGA</option>
+            <option *ngFor="let lOUGA of lOUGAValues" [value]="lOUGA">{{ lOUGA }}</option>
           </select>
         </div>
 
@@ -173,7 +173,7 @@
             data-cy="departementMatam"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let mATAM of mATAMValues" [value]="mATAM">mATAM</option>
+            <option *ngFor="let mATAM of mATAMValues" [value]="mATAM">{{ mATAM }}</option>
           </select>
         </div>
 
@@ -187,7 +187,7 @@
             data-cy="departementSaint"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let sAINTLOUIS of sAINTLOUISValues" [value]="sAINTLOUIS">sAINTLOUIS</option>
+            <option *ngFor="let sAINTLOUIS of sAINTLOUISValues" [value]="sAINTLOUIS">{{ sAINTLOUIS }}</option>
           </select>
         </div>
 
@@ -201,7 +201,7 @@
             data-cy="departementSedhiou"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let sEDHIOU of sEDHIOUValues" [value]="sEDHIOU">sEDHIOU</option>
+            <option *ngFor="let sEDHIOU of sEDHIOUValues" [value]="sEDHIOU">{{ sEDHIOU }}</option>
           </select>
         </div>
 
@@ -215,7 +215,7 @@
             data-cy="departementTambacounda"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let tAMBACOUNDA of tAMBACOUNDAValues" [value]="tAMBACOUNDA">tAMBACOUNDA</option>
+            <option *ngFor="let tAMBACOUNDA of tAMBACOUNDAValues" [value]="tAMBACOUNDA">{{ tAMBACOUNDA }}</option>
           </select>
         </div>
 
@@ -229,7 +229,7 @@
             data-cy="departementThis"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let tHIES of tHIESValues" [value]="tHIES">tHIES</option>
+            <option *ngFor="let tHIES of tHIESValues" [value]="tHIES">{{ tHIES }}</option>
           </select>
         </div>
 
@@ -243,7 +243,7 @@
             data-cy="departementZiguinchor"
           >
             <option [ngValue]="null"></option>
-            <option *ngFor="let zIGUINCHOR of zIGUINCHORValues" [value]="zIGUINCHOR">zIGUINCHOR</option>
+            <option *ngFor="let zIGUINCHOR of zIGUINCHORValues" [value]="zIGUINCHOR">{{ zIGUINCHOR }}</option>
           </select>
         </div>
 
