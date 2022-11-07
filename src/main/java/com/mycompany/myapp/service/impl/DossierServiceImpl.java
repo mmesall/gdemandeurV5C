@@ -77,6 +77,7 @@ public class DossierServiceImpl implements DossierService {
         } else {
             region = "DK";
         }
+
         String numDoss = year.substring(year.length() - 2).concat(date.substring(date.length() - 4)).concat(region);
 
         // .concat(String.valueOf(letter));
