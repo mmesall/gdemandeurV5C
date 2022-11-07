@@ -33,7 +33,7 @@
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
           <!-- <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th> -->
-          <th scope="col" jhiSortBy="logo"><span>Logo</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="logo"><span>Logo</span> <fa-icon icon="sort"></fa-icon></th> -->
           <th scope="col" jhiSortBy="nomService"><span>Nom Service</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="chefService"><span>Chef Service</span> <fa-icon icon="sort"></fa-icon></th>
           <!-- <th scope="col" jhiSortBy="description"><span>Description</span> <fa-icon icon="sort"></fa-icon></th> -->
@@ -47,13 +47,18 @@
           <!-- <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a [routerLink]="['/services', services.id, 'view']">{{ services.id }}</a>
           </td> -->
-          <td>
+          <!-- <td>
             <a *ngIf="services.logo" (click)="openFile(services.logo, services.logoContentType)">
               <img [src]="'data:' + services.logoContentType + ';base64,' + services.logo" style="max-height: 40px" alt="services image" />
             </a>
             <span *ngIf="services.logo"></span>
+          </td> -->
+          <td>
+            <a *ngIf="services.logo" (click)="openFile(services.logo, services.logoContentType)">
+              <img [src]="'data:' + services.logoContentType + ';base64,' + services.logo" style="max-height: 40px" alt="services image" />
+            </a>
+            <span *ngIf="services.logo"></span> : {{ services.nomService }}
           </td>
-          <td>{{ services.nomService }}</td>
           <td>{{ services.chefService }}</td>
           <!-- <td>{{ services.description }}</td> -->
           <!-- <td>{{ services.isPilotage }}</td> -->
