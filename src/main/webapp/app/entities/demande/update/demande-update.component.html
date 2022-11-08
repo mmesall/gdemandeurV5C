@@ -112,11 +112,11 @@
           />
         </div> -->
 
-        <div class="row mb-3" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+        <div class="row mb-3">
           <label class="form-label" for="field_etatDemande">Etat Demande</label>
           <select class="form-control" name="etatDemande" formControlName="etatDemande" id="field_etatDemande" data-cy="etatDemande">
             <option [ngValue]="null"></option>
-            <option *ngFor="let etatDemande of etatDemandeValues" [value]="etatDemande">{{ etatDemande }}</option>
+            <option *ngFor="let etatDemande of etatDemandeValues" [value]="etatDemande" default="OUVERTE">{{ etatDemande }}</option>
           </select>
         </div>
 
