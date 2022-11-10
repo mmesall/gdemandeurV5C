@@ -9,6 +9,7 @@
       </button> -->
 
       <button
+        *jhiHasAnyAuthority="'ROLE_ADMIN'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-eleve"
@@ -32,7 +33,7 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th *jhiHasAnyAuthority="'ROLE_ADMIN'" scope="col" jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="nom"><span>Nom</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="prenom"><span>Prenom</span> <fa-icon icon="sort"></fa-icon></th>
           <th scope="col" jhiSortBy="dateNaiss"><span>Date et lieu de Naissance</span> <fa-icon icon="sort"></fa-icon></th>
@@ -50,7 +51,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let eleve of eleves; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <td *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <a [routerLink]="['/eleve', eleve.id, 'view']">{{ eleve.id }}</a>
           </td>
           <td>{{ eleve.nom }}</td>
@@ -82,12 +83,24 @@
                 <span class="d-none d-md-inline">Voir</span>
               </button>
 
-              <button type="submit" [routerLink]="['/eleve', eleve.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                [routerLink]="['/eleve', eleve.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline">Editer</span>
               </button>
 
-              <button type="submit" (click)="delete(eleve)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button
+                *jhiHasAnyAuthority="'ROLE_ADMIN'"
+                type="submit"
+                (click)="delete(eleve)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline">Supprimer</span>
               </button>

@@ -107,41 +107,94 @@
   </div>
 
   <!-- ======================== LES CARDS =============================== -->
-  <div class="row" style="height: 500px">
-    <div class="col-sm-4">
-      <div class="card text-center" style="height: 200px">
-        <div class="card-body" style="color: black">
-          <img class="card-img-top" src="../../content/images/img8.jpeg" alt="Card image cap" />
-          <h5 class="card-title">Vous etes demandeurs?</h5>
-          <p class="card-text">Inscrivez-vous sur la plateformme de gestion des demandeurs de formation.</p>
-          <a href="http://localhost:9080/auth/realms/jhipster/account/" class="btn btn-primary">Espace Demandeur</a>
+  <div class="container">
+    <div class="recherchePrincipal">
+      <div class="container">
+        <div class="row" style="padding-left: 30px; padding-right: 30px; margin-top: 20px">
+          <div class="col-sm-12 col-xs-12">
+            <h3 style="background: rgb(239, 239, 241); width: 40%; font-weight: bold; font-style: italic">Orientations</h3>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-sm-4">
-      <div class="card text-center" style="height: 200px">
-        <div class="card-body" style="color: black">
-          <img class="card-img-top" src="../../content/images/seconnecter.jpg" alt="Card image cap" />
-          <h5 class="card-title">Vous etes agents au MFPAI</h5>
-          <p class="card-text">Vous etes nouveau sur la plateforme? Inscrivez-vous.</p>
-          <a href="http://localhost:9080/auth/realms/jhipster/account/" class="btn btn-primary">Espace MFPAI</a>
+      <section class="mes_orientations">
+        <div class="container" style="width: 100%; margin: auto; padding-bottom: 10px">
+          <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="mes_orientations_1">
+                <div class="image-holder">
+                  <a routerLink="/bailleur">
+                    <img src="../../content/images/img8.jpeg" class="image-responsive" alt="" />
+
+                    <h3>Les Organismes de financement du MFPAI</h3>
+                    <br />
+                    <!-- <i class="fa fa-angle-right" aria-hidden="true"></i> -->
+                    <!-- <fa-icon icon="user"></fa-icon> -->
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="mes_orientations_2">
+                <div class="image-holder">
+                  <img class="image-responsive" src="../../content/images/etablissements/CFPT Sénégal-Japon.webp" alt="" />
+                  <a routerLink="/etablissement">
+                    <h3>Les etablissements de formation</h3>
+                    <br />
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="mes_orientations_3">
+                <div class="image-holder">
+                  <img class="image-responsive" src="../../content/images/formations/formation.jpg" alt="" />
+                  <a routerLink="/formation">
+                    <h3>Les formations professionnelles et techniques</h3>
+                    <br />
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="card text-center" style="height: 200px">
+                <div class="card-body" style="color: black">
+                  <img class="card-img-top" src="../../content/images/img8.jpeg" alt="Card image cap" />
+                  <h5 class="card-title">Vous etes demandeurs?</h5>
+                  <p class="card-text">Inscrivez-vous sur la plateformme de gestion des demandeurs de formation.</p>
+                  <a href="http://localhost:9080/auth/realms/jhipster/account/" class="btn btn-primary">Espace Demandeur</a>
+                 </div>
+              </div> -->
+            <!-- <div class="col-sm-4">
+              <div class="card text-center" style="height: 200px">
+                <div class="card-body" style="color: black">
+                  <img class="card-img-top" src="../../content/images/seconnecter.jpg" alt="Card image cap" />
+                  <h5 class="card-title">Vous etes agents au MFPAI</h5>
+                  <p class="card-text">Vous etes nouveau sur la plateforme? Inscrivez-vous.</p>
+                  <a href="http://localhost:9080/auth/realms/jhipster/account/" class="btn btn-primary">Espace MFPAI</a>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="col-sm-4">
+              <div class="card text-center" style="height: 200px">
+                <div class="card-body" style="color: black">
+                  <a routerLink="/formation"><img class="card-img-top" src="../../content/images/image4.jpg" alt="Card image cap" /></a>
+                  <h5 class="card-title">Les formations professionnelles et techniques</h5>
+                  <p class="card-text">Vous etes nouveau sur la plateforme? Inscrivez-vous.</p>
+                  <a routerLink="/formation" class="btn btn-primary">Consulter formations</a>
+                </div>
+              </div>
+            </div> -->
+          </div>
         </div>
-      </div>
+      </section>
     </div>
+  </div>
 
-    <div class="col-sm-4">
-      <div class="card text-center" style="height: 200px">
-        <div class="card-body" style="color: black">
-          <img class="card-img-top" src="../../content/images/image4.jpg" alt="Card image cap" />
-          <h5 class="card-title">Les formations professionnelles et techniques</h5>
-          <p class="card-text">Vous etes nouveau sur la plateforme? Inscrivez-vous.</p>
-          <a routerLink="/formation" class="btn btn-primary">Consulter formations</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="card text-white col-sm-4">
+  <!-- <div class="card text-white col-sm-4">
         <a routerLink="/formation"><img src="../../content/images/image4.jpg" class="card-img" alt="..."></a>
         <div class="card-img-overlay">
           <h5 class="card-title">Card title</h5>
@@ -149,7 +202,6 @@
           <p class="card-text">Last updated 3 mins ago</p>
         </div>
       </div> -->
-  </div>
 
   <!-- ============================= LES FORMATIONS A LA UNE ============================= -->
   <div class="row"></div>
