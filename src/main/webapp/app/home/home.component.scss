@@ -30,6 +30,25 @@ Main page styles
   height: auto;
 }
 
+// .inner-box{
+
+// }
+
+.contour {
+  border: solid;
+  width: 100%;
+  float: left;
+}
+
+.couverture {
+  width: 100%;
+}
+
+.img_etablissement {
+  width: 90%;
+  height: 50%;
+}
+
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),
